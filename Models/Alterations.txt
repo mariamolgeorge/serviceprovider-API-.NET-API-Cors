@@ -1,0 +1,1641 @@
+﻿=======================changes by sabitha-24-may-2021=================================
+alter procedure [dbo].spInsertCategory -- 0,'test','test12',3,''
+@Id int,    
+@Name nvarchar(100),    
+@ImagePath nvarchar(max),    
+@UserId int,    
+@Description nvarchar(max)    
+As    
+Begin try    
+declare @cid int  
+ if(@Id=0)    
+     Begin     
+      Insert into Category(Name,ImagePath,UserId,Description)
+	  values(@Name,@ImagePath,@UserId,@Description)    
+   set @cid=CAST(SCOPE_IDENTITY() as int)   
+   if (Len(@ImagePath)) >0  
+   Begin  
+   update Category set ImagePath=cast(@cid as varchar(10))+'.jpg' where Id=@cid  
+   End  
+      select @cid as Id,CAST(@@ERROR as int) as Error    
+     End     
+  else    
+     Begin    
+     update Category set Name=@Name,ImagePath=@ImagePath,UserId=@UserId,Description=@Description where Id=@Id    
+     Select @Id as Id,CAST(@@ERROR as int ) as Error    
+     End     
+End try    
+Begin catch    
+select CAST( 0 as int) as Id,CAST(@@ERROR as int) as Error    
+End catch
+
+------------------------------
+
+update [dbo].Category set Imagepath=cast(Id as nvarchar)+'.jpg'
+
+
+------------------------------------------------
+
+alter procedure [dbo].[spInsertServices]    
+@Id int,    
+@Name nvarchar(100),    
+@Code nvarchar(50),    
+@ImagePath nvarchar(max),    
+@Description nvarchar(max),    
+@Rules nvarchar(max),    
+@CategoryId int,    
+@UserId int,    
+@RateChart nvarchar(max)    
+--@ServiceRate ServiceRateChart readonly    
+As    
+Begin try    
+  declare @Sid int    
+  if(@Id=0)    
+    Begin    
+     Insert Into [Services](Name,Code,ImagePath,Description,Rules,CategoryId,UserId,RateChart)  
+  values(@Name,@Code,@ImagePath,@Description,@Rules,@CategoryId,@UserId,@RateChart)    
+     set @Sid=CAST(SCOPE_IDENTITY() as int)    
+  if (Len(@ImagePath))>0  
+  Begin  
+  update [Services] set ImagePath=cast(@Sid as nvarchar)+'.jpg'  
+  End  
+     --Insert into ServiceRateChart(Category,Rate,ServiceId)     
+     --select Category,Rate,@Sid from @ServiceRate    
+     select @Sid as Id,CAST(@@ERROR as int) as Error    
+    End    
+   else    
+     Begin    
+      Update [Services] set Name=@Name,Code=@Code,ImagePath=@ImagePath,  
+   Description=@Description,Rules=@Rules,CategoryId=@CategoryId,UserId=@UserId,RateChart=@RateChart where Id=@Id    
+      --delete from ServiceRateChart where ServiceId=@Id    
+      --Insert into ServiceRateChart(Category,Rate,ServiceId)     
+      --select Category,Rate,@Id from @ServiceRate    
+      select @Id as Id,CAST(@@ERROR as int) as Error    
+     End     
+End try    
+Begin catch    
+select cast(0 as int) as Id,CAST(@@ERROR as int) as Error    
+End catch
+
+-----------------------------------------------
+
+
+update [dbo].[Services] set Imagepath=cast(Id as nvarchar)+'.jpg'
+
+
+
+
+===========================================changes by sabitha-03-Jun-2021=============
+
+
+
+DROP TABLE [dbo].[Payments]
+
+
+DROP TABLE [dbo].[ServiceBooking]
+
+
+CREATE TABLE [dbo].[ServiceBooking](
+	[Id] [int] IDENTITY(1,1) NOT NULL ,
+	[ServiceId] [int] NULL,
+	[ServiceName] [nvarchar](200) NULL,
+	[UserId] int references Users (Id),
+	[UserName] [nvarchar](100) NULL,
+	[Mobile] [nvarchar](15) NULL,
+	[Address] [nvarchar](max) NULL,
+	[LocationId] [int] NULL,
+	[Latitude] [nvarchar](100) NULL,
+	[Longitude] [nvarchar](100) NULL,
+	[PaymentType] [int] NULL,
+	[Amount] [float] NULL,
+	[ServiceDate] [datetime] NULL,
+	[ServiceTime] [datetime] NULL,
+	[ServiceType] [int] NULL,
+	[Remarks] [nvarchar](max) NULL,
+	[OfferCode] [nvarchar](10) NULL,
+	[Discount] [float] NULL,
+	[SupervisorId] [int] NULL,
+	 Status int default 0,
+	[Systime] [datetime] default getdate()
+)
+
+
+CREATE TABLE [dbo].[Payments](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ServiceBookingId] [int] NULL,
+	[PaymentCode] [nvarchar](100) NULL,
+	[Amount] [float] NULL,
+	 Status int default 0,
+	[Systime] [datetime] default getdate()
+)
+
+
+
+ create procedure spGetAllServicesWithPincode  
+@pincode nvarchar(50)  
+as  
+Begin  
+declare @locationid int=(select top 1 l.Id from LocationArea la inner join Location l on la.LocationId=l.Id  
+where @pincode between la.FromPincode and la.ToPincode and l.Status=0 and la.Status=0)  
+select s.Id,s.Name,s.Code,s.ImagePath,s.Description,s.Rules,s.CategoryId,s.UserId,s.RateChart,  
+(select c.Name from category c where s.CategoryId =c.Id) as CategoryName  
+ from CityServiceMapping csm inner join   
+[Services] s on csm.ServiceId=s.Id where csm.CityId=@locationid  and s.Status=0
+End
+
+
+DROP PROCEDURE [dbo].[spInsertServiceBooking]
+
+
+create procedure [dbo].spInsertServiceBooking
+@id int,
+@serviceid int,
+@servicename nvarchar(200),
+@userid int,
+@username nvarchar(100),
+@mobile nvarchar(15),
+@address nvarchar(max),
+@locationid int,
+@latitude nvarchar(100),
+@longitude nvarchar(100),
+@paymenttype int,
+@amount float,
+@servicedate datetime,
+@servicetime datetime,
+@servicetype int,
+@remarks nvarchar(max),
+@offercode nvarchar(10),
+@discount float,
+@supervisorid int,
+@paymentcode nvarchar(100)
+as
+Begin Try
+ insert into ServiceBooking(ServiceId,ServiceName,UserId,UserName,Mobile,Address,
+ LocationId,Latitude,Longitude,PaymentType,Amount,ServiceDate,ServiceTime,ServiceType,Remarks,OfferCode,
+ Discount,SupervisorId)
+ values(@serviceid,@servicename,@userid,@username,@mobile,@address,
+ @locationid,@latitude,@longitude,@paymenttype,@amount,@servicedate,@servicetime,@servicetype,@remarks,@offercode,
+ @discount,@supervisorid)
+set @id=(select CAST(SCOPE_IDENTITY()AS INT))
+insert into Payments(ServiceBookingId,PaymentCode,Amount)
+values(@id,@paymentcode,@amount)
+select @id as Id,Cast(@@Error as int) as Error
+End Try
+Begin catch
+select 0 as Id,Cast(@@Error as int) as Error
+End Catch
+
+
+alter table Users
+add Pincode nvarchar(10)
+
+alter table Users
+add Latitude nvarchar(100)
+
+alter table Users
+add Longitude nvarchar(100)
+
+
+CREATE proc dbo.spUserLoginWithEmailOrMobile --'','psjikhil@gmail.com','123456'    
+@mobile nvarchar(100),    
+@email nvarchar(100),    
+@password nvarchar(100)    
+as    
+begin try    
+    
+if(select COUNT(*) from  Users where (Mobile=@mobile or @mobile is null) and (Email=@email ) and UserType=0 and Status=0 )=0    
+begin    
+insert into Users(Mobile,Email,UserType,Password)    
+values(@mobile,@email,0,@password)    
+select (select CAST(SCOPE_IDENTITY()AS INT)) as Id,cast(@@ERROR as int) as Error,@password as Password    
+end    
+else    
+begin    
+declare @Id int=(select top 1Id from  Users where (Mobile=@mobile or @mobile is null) and (Email=@email ) and UserType=0 and Status=0)    
+update   Users set Password=@password where Id=@Id    
+select @Id as Id,cast(@@ERROR as int) as Error  ,@password as Password   
+end    
+end try    
+Begin Catch    
+select 0 as Id,cast(@@ERROR as int) as Error,'' as Password    
+end catch
+
+
+create proc dbo.spLoginCheckWithOTP  
+@Id int,  
+@otp nvarchar(100)  
+as  
+begin  
+select Id,ISNULL(Name,'') as Name,Password,ISNULL(Mobile,'') as Mobile,ISNULL(Email,'') as Email,
+ISNULL(Address,'') as Address,ISNULL(Pincode,'') as Pincode,UserType,ISNULL(Latitude,'') as Latitude,
+ISNULL(Longitude,'') as Longitude,Status
+from Users (nolock) where Id=@Id and Password=@otp and Status=0  
+end
+
+
+
+create proc dbo.spUpdateUsers  
+@Id int,  
+@name nvarchar(100),  
+@mobile nvarchar(100),  
+@email nvarchar(100),  
+@address nvarchar(max),  
+@pincode nvarchar(100),  
+@latitude nvarchar(100),  
+@longitude nvarchar(100)  
+as  
+begin try  
+Update Users set Name=@name,Mobile=@mobile,Email=@email,Address=@address,Pincode=@pincode,
+Latitude=@latitude,Longitude=@longitude where Id=@Id  
+select @Id as Id,cast(@@ERROR as int) as Error  
+end try  
+Begin Catch  
+select 0 as Id,cast(@@ERROR as int) as Error  
+end catch
+
+
+
+ create procedure [dbo].[spResendVerificationOtp]    
+  @Id int    
+  As    
+  Begin    
+  Select Id,ISNULL(Name,'') as Name,Password,ISNULL(Mobile,'') as Mobile,ISNULL(Email,'') as Email from Users where Id=@Id    
+  End 
+
+
+
+  =============================================changes by sabitha-04-Jun-2021======================
+
+
+  alter procedure [dbo].[spGetAllServices]  
+As  
+Begin  
+--select Id,Name,Code,ImagePath,Description,Rules,CategoryId,UserId,RateChart,Status from [Services] where Status!=1  
+select s.Id,s.Name,s.Code,s.ImagePath,s.Description,s.Rules,
+s.CategoryId,s.UserId,s.RateChart,s.Status,ISNULL(s.AdvanceAmount,0) as AdvanceAmount,c.Name as CategoryName 
+from [Services] s inner join Category  c 
+on s.CategoryId=c.Id where  
+s.Status!=1  
+End
+
+alter procedure [dbo].[spInsertServices]      
+@Id int,      
+@Name nvarchar(100),      
+@Code nvarchar(50),      
+@ImagePath nvarchar(max),      
+@Description nvarchar(max),      
+@Rules nvarchar(max),      
+@CategoryId int,   
+@status int,  
+@UserId int,   
+@advanceamount float,
+@RateChart nvarchar(max)      
+--@ServiceRate ServiceRateChart readonly      
+As      
+Begin try      
+  declare @Sid int      
+  if(@Id=0)      
+    Begin      
+     Insert Into [Services](Name,Code,ImagePath,Description,Rules,CategoryId,Status,UserId,RateChart,AdvanceAmount)    
+  values(@Name,@Code,@ImagePath,@Description,@Rules,@CategoryId,@status,@UserId,@RateChart,@advanceamount)      
+     set @Sid=CAST(SCOPE_IDENTITY() as int)      
+  if (Len(@ImagePath))>0    
+  Begin    
+  update [Services] set ImagePath=cast(@Sid as nvarchar)+'.jpg'    
+  End    
+     --Insert into ServiceRateChart(Category,Rate,ServiceId)       
+     --select Category,Rate,@Sid from @ServiceRate      
+     select @Sid as Id,CAST(@@ERROR as int) as Error      
+    End      
+   else      
+     Begin      
+      Update [Services] set Name=@Name,Code=@Code,ImagePath=@ImagePath,    
+   Description=@Description,Rules=@Rules,CategoryId=@CategoryId,Status=@status,
+   UserId=@UserId,RateChart=@RateChart,AdvanceAmount=@advanceamount where Id=@Id      
+      --delete from ServiceRateChart where ServiceId=@Id      
+      --Insert into ServiceRateChart(Category,Rate,ServiceId)       
+      --select Category,Rate,@Id from @ServiceRate      
+      select @Id as Id,CAST(@@ERROR as int) as Error      
+     End       
+End try      
+Begin catch      
+select cast(0 as int) as Id,CAST(@@ERROR as int) as Error      
+End catch
+
+
+
+create table [dbo].ServiceTimeSlots(
+Id int primary key Identity(1,1),
+StartTime datetime,
+EndTime datetime,
+LocationId int,
+ServiceId int,
+Status int default 0,
+Systime datetime default getdate()
+)
+
+
+create procedure spInsertServiceTimeSlots
+@id int,
+@starttime datetime,
+@endtime datetime,
+@locationid int,
+@serviceid int,
+@status int
+as
+Begin Try
+if @id=0
+Begin
+insert into ServiceTimeSlots(StartTime,EndTime,LocationId,ServiceId,Status)
+values(@starttime,@endtime,@locationid,@serviceid,@status)
+select CAST(SCOPE_IDENTITY() as int) as Id,Cast(@@Error as int)as Error
+End
+Else
+Begin
+update ServiceTimeSlots set StartTime=@starttime,EndTime=@endtime,LocationId=@locationid,
+ServiceId=@serviceid,Status=@status where Id=@id
+select @id as Id,Cast(@@Error as int)as Error
+End
+End Try
+Begin catch
+select 0 as Id,Cast(@@Error as int)as Error
+End catch
+
+
+create procedure [dbo].spGetAllServiceTimeSlotsWithServiceId  
+@serviceid int  
+as  
+Begin  
+select st.Id,st.StartTime,st.EndTime,st.LocationId,st.ServiceId,st.Status,st.Systime   
+from ServiceTimeSlots st   
+where st.Status<>1 
+End
+
+
+create procedure [dbo].spGetAllServiceTimeSlots
+as
+Begin
+ select distinct s.Id,s.Name,(select count(*) from ServiceTimeSlots sts where sts.ServiceId=s.Id and sts.Status<>1 ) as Count  from ServiceTimeSlots sts 
+  inner join [Services] s on sts.ServiceId=s.Id where sts.Status<>1
+End
+
+
+
+alter procedure [dbo].[spGetMastersCount]  
+as  
+Begin  
+Select (select Count(*) from [Category] where Status<>1) as CategoryCount ,  
+(select Count(*) from [Services] where Status<>1) as ServiceCount,  
+(select count(*) from [UsersAdmin] where Status<> 1) as UsersCount,  
+(select count(*) from [Location] where Status<>1) as LocationCount,  
+(select count(*) from [UsersSupervisor] where Status<>1 and ServiceId<>0) as SupervisorCount,  
+(select count(*)  from UsersServiceProvider usp   
+ inner join Location lo on lo.id=usp.CityId   
+ inner join UsersSupervisor us on us.Id=usp.SupervisorId  
+    where usp.Status !=1) as TechnicianCount,  
+( select count(distinct l.Id)  from [Location] l inner join   
+CityServiceMapping csm on csm.CityId=l.Id  
+where l.Status<>1) as CityServiceMappingCount,
+(select Count(*) from ServiceTimeSlots sts where sts.Status<>1) as TimeSlotCount
+End
+
+
+ALTER procedure [dbo].[spGetAllServicesWithPincode]  
+@pincode nvarchar(50)  
+as  
+Begin  
+declare @locationid int=(select top 1 l.Id from LocationArea la inner join Location l on la.LocationId=l.Id  
+where @pincode between la.FromPincode and la.ToPincode and l.Status=0 and la.Status=0)  
+select s.Id,s.Name,s.Code,s.ImagePath,s.Description,s.Rules,s.CategoryId,s.UserId,s.RateChart,
+ISNULL(s.AdvanceAmount,0) as AdvanceAmount,  
+(select c.Name from category c where s.CategoryId =c.Id) as CategoryName  
+ from CityServiceMapping csm inner join   
+[Services] s on csm.ServiceId=s.Id where csm.CityId=@locationid  and s.Status=0
+End
+
+
+=============================changes by sabitha-05-Jun-2021=============================
+
+
+
+create procedure [dbo].spGetAllCategoryWithPincode --'682002'
+@pincode nvarchar(100)
+as
+Begin
+declare @locationid int=(select top 1 l.Id from LocationArea la inner join Location l on la.LocationId=l.Id  
+where @pincode between la.FromPincode and la.ToPincode and l.Status=0 and la.Status=0) 
+select distinct c.Id,c.Name from [Services] s 
+inner join CityServiceMapping csm on csm.ServiceId=s.Id
+inner join Category c on c.Id=s.CategoryId
+where csm.CityId=@locationid and c.Status=0 
+End
+
+
+========================================changes by sabitha-JUn-11-2021===================================
+
+
+
+
+create procedure [dbo].spGetTopTwelveServicesWithPincode
+@pincode nvarchar(100)
+as
+Begin 
+declare @locationid int=(select top 1 l.Id from LocationArea la inner join Location l on la.LocationId=l.Id    
+where @pincode between la.FromPincode and la.ToPincode and l.Status=0 and la.Status=0)    
+select top 12 s.Id,@locationid as LocationId,s.Name,s.Code,s.ImagePath,s.Description,s.Rules,s.CategoryId,s.UserId,s.RateChart,  
+ISNULL(s.AdvanceAmount,0) as AdvanceAmount,ISNULL((select top 1 Id from UsersSupervisor where ServiceId=s.Id),0) as SupervisorId,   
+(select c.Name from category c where s.CategoryId =c.Id) as CategoryName    
+ from CityServiceMapping csm inner join     
+[Services] s on csm.ServiceId=s.Id where csm.CityId=@locationid  and s.Status=0  order by s.Code asc
+End 
+
+
+=================================================changes by sabitha-12-Jun-2021==========================================
+
+
+
+create table [dbo].ServiceRateChartMapping(
+Id int primary key identity(1,1),
+Name nvarchar(100),
+ServiceId int,
+UptoHours datetime,
+Amount float
+)
+
+
+CREATE TYPE [dbo].[ServiceRateChartMappingList] AS TABLE(
+	Name nvarchar(100),
+	ServiceId int,
+	UptoHours datetime,
+	Amount float
+)
+
+
+alter procedure [dbo].[spInsertServices]        
+@Id int,        
+@Name nvarchar(100),        
+@Code nvarchar(50),        
+@ImagePath nvarchar(max),        
+@Description nvarchar(max),        
+@Rules nvarchar(max),        
+@CategoryId int,     
+@status int,    
+@UserId int,     
+@advanceamount float,  
+@RateChart nvarchar(max),        
+@ServiceRate ServiceRateChartMappingList readonly        
+As        
+Begin try        
+  declare @Sid int        
+  if(@Id=0)        
+    Begin        
+     Insert Into [Services](Name,Code,ImagePath,Description,Rules,CategoryId,Status,UserId,RateChart,AdvanceAmount)      
+  values(@Name,@Code,@ImagePath,@Description,@Rules,@CategoryId,@status,@UserId,@RateChart,@advanceamount)        
+     set @Sid=CAST(SCOPE_IDENTITY() as int)        
+  if (Len(@ImagePath))>0      
+  Begin      
+  update [Services] set ImagePath=cast(@Sid as nvarchar)+'.jpg'      
+  End      
+     Insert into ServiceRateChartMapping(Name,ServiceId,UptoHours,Amount)         
+     select Name,@Sid,UptoHours,Amount from @ServiceRate        
+     select @Sid as Id,CAST(@@ERROR as int) as Error        
+    End        
+   else        
+     Begin        
+      Update [Services] set Name=@Name,Code=@Code,ImagePath=@ImagePath,      
+   Description=@Description,Rules=@Rules,CategoryId=@CategoryId,Status=@status,  
+   UserId=@UserId,RateChart=@RateChart,AdvanceAmount=@advanceamount where Id=@Id        
+      delete from ServiceRateChartMapping  where ServiceId=@Id      
+      Insert into ServiceRateChartMapping(Name,ServiceId,UptoHours,Amount)         
+     select Name,@Id,UptoHours,Amount from @ServiceRate        
+      select @Id as Id,CAST(@@ERROR as int) as Error        
+     End         
+End try        
+Begin catch        
+select cast(0 as int) as Id,CAST(@@ERROR as int) as Error        
+End catch
+
+
+
+create procedure spGetServiceRateChartmappingWithServiceId 
+@serviceid int
+as
+Begin
+select Id,Name,ServiceId,UptoHours,Amount from ServiceRateChartMapping where ServiceId=@serviceid
+End
+
+
+
+create procedure [dbo].[spGetAllCallAssignWithTechnicianId]  
+@technicianid int  
+As  
+Begin  
+select Id,ServiceBookingId,CustomerId,TechnicianId,StartTime,EndTime,TechnicianRemarks,ServiceStartTime,ServiceEndTime,AssignedTime,  
+AssignedBy,StartLocation,Amount,Status from CallAssign   
+where TechnicianId=@technicianid  and (Status=0 or Status=8)
+End
+
+
+create procedure spGetStartCallAssign  
+@callassignid int,  
+@startlocation nvarchar(max)  
+as  
+Begin Try  
+update CallAssign set Status=8,ServiceStartTime=getdate(),StartTime=getdate(),StartLocation=@startlocation where Id=@callassignid  
+select @callassignid as Id,Cast(@@Error as int) as Error  
+End Try  
+Begin catch  
+select 0 as Id,Cast(@@Error as int) as Error  
+End Catch
+
+
+create procedure spEndCallAssign
+@callassignid int,
+@remarks nvarchar(100),
+@amount float,
+@status int
+as
+Begin Try
+update CallAssign set EndTime=getdate(),ServiceEndTime=getdate(),TechnicianRemarks=@remarks,
+Amount=@amount,Status=@status where Id=@callassignid
+select @callassignid as Id,Cast(@@Error as int) as Error
+End Try
+Begin catch
+select 0 as Id,Cast(@@Error as int) as Error
+End catch
+
+=======================================changes by sabitha-15-Jun-2021=====================
+
+
+CREATE procedure spInsertServiceBooking    
+@id int,    
+@serviceid int,    
+@servicename nvarchar(200),    
+@userid int,    
+@username nvarchar(100),    
+@mobile nvarchar(15),    
+@address nvarchar(max),    
+@locationid int,    
+@latitude nvarchar(100),    
+@longitude nvarchar(100),    
+@paymenttype int,    
+@amount float,    
+@servicedate datetime,    
+@servicetime datetime,    
+@servicetype int,    
+@remarks nvarchar(max),    
+@offercode nvarchar(10),    
+@discount float,    
+@supervisorid int,    
+@paymentcode nvarchar(100),  
+@adminremarks nvarchar(max),  
+@supervisorremarks nvarchar(max),  
+@technicianremarks nvarchar(max)  
+as    
+Begin Try   
+if @id=0  
+Begin  
+insert into ServiceBooking(ServiceId,ServiceName,UserId,UserName,Mobile,Address,    
+ LocationId,Latitude,Longitude,PaymentType,Amount,ServiceDate,ServiceTime,ServiceType,Remarks,OfferCode,    
+ Discount,SupervisorId,AdminRemarks,SupervisorRemarks,TechnicianRemarks)    
+ values(@serviceid,@servicename,@userid,@username,@mobile,@address,    
+ @locationid,@latitude,@longitude,@paymenttype,@amount,@servicedate,@servicetime,@servicetype,@remarks,@offercode,    
+ @discount,@supervisorid,@adminremarks,@supervisorremarks,@technicianremarks)    
+set @id=(select CAST(SCOPE_IDENTITY()AS INT))    
+insert into Payments(ServiceBookingId,PaymentCode,Amount)    
+values(@id,@paymentcode,@amount)    
+select @id as Id,Cast(@@Error as int) as Error  
+End  
+ Else  
+ Begin  
+  update ServiceBooking set ServiceId=@serviceid,ServiceName=@servicename,UserId=@userid,UserName=@username,  
+  Mobile=@mobile,Address=@address,LocationId=@locationid,Latitude=@latitude,Longitude=@longitude,  
+  PaymentType=@paymenttype,Amount=@amount,ServiceDate=@servicedate,ServiceTime=@servicetime,ServiceType=@servicetype,  
+  Remarks=@remarks,OfferCode=@offercode,    
+ Discount=@discount,SupervisorId=@supervisorid,AdminRemarks=@adminremarks,SupervisorRemarks=@supervisorremarks,  
+ TechnicianRemarks=@technicianremarks where Id=@id  
+ insert into Payments(ServiceBookingId,PaymentCode,Amount)    
+values(@id,@paymentcode,@amount)    
+select @id as Id,Cast(@@Error as int) as Error  
+ End    
+End Try    
+Begin catch    
+select 0 as Id,Cast(@@Error as int) as Error    
+End Catch
+
+
+
+ALTER procedure [dbo].[spGetAllBookingDetails]             
+  As        
+  Begin         
+  --select sb.Id as ServiceBookingId,sb.ServiceName,sb.SysTime,sb.ServiceDate,sb.ServiceTime,      
+  --sb.PaymentType,sb.SupervisorId,sb.Status,sb.UserId,ISNULL(sb.TechnicianId,0) as TechnicianId ,      
+  --sb.Amount,sb.Address,ua.Name,sb.LocationId,sb.ServiceId,sb.Longitude,sb.Latitude,sb.ServiceType,        
+  --ua.Address as UserAddress,ISNULL((ua.Mobile),'') as Mobile,ua.Email ,ISNULL(sb.Remarks,'') as Remarks,
+  --ISNULL(sb.AdminRemarks,'') as AdminRemarks,ISNULL(sb.SupervisorRemarks,'') as SupervisorRemarks,
+  --ISNULL(sb.TechnicianRemarks,'') as TechnicianRemarks,
+  --ISNULL((select top 1 Name from UsersSupervisor where Id=sb.SupervisorId),'') as SupervisorName,        
+  --ISNULL((select top 1 Name from Location where Id=sb.LocationId),0) as Location,      
+  --ISNULL((select top 1 Name from UsersServiceProvider where Id=sb.TechnicianId),'') as TechnicianName         
+  --from ServiceBooking sb         
+  --inner join Users ua on ua.Id=sb.UserId   
+  select sb.Id as ServiceBookingId,sb.ServiceName,sb.SysTime,sb.ServiceDate,sb.ServiceTime,      
+  sb.PaymentType,sb.SupervisorId,sb.Status,sb.UserId,ISNULL(sb.TechnicianId,0) as TechnicianId ,      
+  sb.Amount,sb.Address,sb.LocationId,sb.ServiceId,sb.Longitude,sb.Latitude,sb.ServiceType,        
+  ISNULL(sb.Remarks,'') as Remarks,ISNULL(sb.ServiceStatus,0) as ServiceStatus,
+  ISNULL(sb.AdminRemarks,'') as AdminRemarks,ISNULL(sb.SupervisorRemarks,'') as SupervisorRemarks,
+  ISNULL(sb.TechnicianRemarks,'') as TechnicianRemarks,
+  ISNULL((select top 1 Name from UsersSupervisor where Id=sb.SupervisorId),'') as SupervisorName,        
+  ISNULL((select top 1 Name from Location where Id=sb.LocationId),0) as Location,      
+  ISNULL((select top 1 Name from UsersServiceProvider where Id=sb.TechnicianId),'') as TechnicianName,ISNULL((select Address from Users where Id=sb.UserId),'')As UserAddress  ,
+  ISNULL((Select Name from Users where Id=sb.UserId ),'')as Name,ISNULL((Select Mobile from Users where Id=sb.UserId ),'')as Mobile,
+  ISNULL((Select Email from Users where Id=sb.UserId ),'')as Email
+  from ServiceBooking sb         
+  
+  End
+
+
+  ==================================changes by sabitha-16-Jun-2021=================
+
+
+
+  alter procedure [dbo].spGetStartCallAssign    
+@callassignid int,    
+@startlocation nvarchar(max)    
+as    
+Begin Try    
+update CallAssign set Status=8,ServiceStartTime=getdate(),
+StartTime=getdate(),StartLocation=@startlocation where Id=@callassignid    
+declare @servicebookingid int=(select ServiceBookingId from CallAssign  where Id=@callassignid )
+update ServiceBooking set ServiceStatus=8 where Id=@servicebookingid
+select @callassignid as Id,Cast(@@Error as int) as Error    
+End Try    
+Begin catch    
+select 0 as Id,Cast(@@Error as int) as Error    
+End Catch
+
+
+alter procedure spEndCallAssign  
+@callassignid int,  
+@remarks nvarchar(100),  
+@amount float,  
+@status int  
+as  
+Begin Try  
+update CallAssign set EndTime=getdate(),ServiceEndTime=getdate(),TechnicianRemarks=@remarks,  
+Amount=@amount,Status=@status where Id=@callassignid  
+declare @servicebookingid int=(select ServiceBookingId from CallAssign  where Id=@callassignid )
+update ServiceBooking set ServiceStatus=@status where Id=@servicebookingid
+select @callassignid as Id,Cast(@@Error as int) as Error  
+End Try  
+Begin catch  
+select 0 as Id,Cast(@@Error as int) as Error  
+End catch  
+  
+
+
+  alter procedure [dbo].[spGetAllCallAssignWithTechnicianId] 
+@technicianid int  
+As  
+Begin  
+--select Id,ServiceBookingId,CustomerId,TechnicianId,StartTime,EndTime,TechnicianRemarks,ServiceStartTime,ServiceEndTime,AssignedTime,  
+--AssignedBy,StartLocation,Amount,Status from CallAssign   
+--where TechnicianId=@technicianid  and (Status=0 or Status=8)
+select ca.Id,ca.ServiceBookingId,ca.CustomerId,ISNULL((ca.TechnicianId),0)as TechnicianId,
+ISNULL((ca.StartTime),getdate())as StartTime,ISNULL((ca.EndTime),getdate())as EndTime,
+ISNULL((ca.TechnicianRemarks),'')as TechnicianRemarks,
+ISNULL((ca.ServiceStartTime),getdate())as ServicesStartTime,
+ISNULL((ca.ServiceEndTime),getdate())as ServiceEndTime,ca.AssignedTime,  
+ca.AssignedBy,ISNULL((ca.StartLocation),'')as StartLocation,ISNULL((ca.Amount),0)as Amount,ca.Status,sb.UserName as CustomerName,sb.ServiceName,sb.ServiceDate,sb.ServiceType,
+sb.Address,sb.Mobile,ISNULL((sb.AdminRemarks),'')as AdminRemarks,IsNull((sb.Remarks),'')as UserRemarks,IsNull((sb.SupervisorRemarks),'')as SupervisorRemarks from CallAssign ca
+inner join ServiceBooking sb On ca.ServiceBookingId=sb.Id
+where ca.TechnicianId=@technicianid  and (ca.Status=0 or ca.Status=8)
+End
+
+
+create procedure [dbo].spGetAllCallAssignDetailsWithServiceBookingId
+@bookingid int
+as
+Begin
+select ca.Id,ca.ServiceBookingId,ca.CustomerId,ca.TechnicianId,
+ISNULL(ca.StartTime,getdate()) as StartTime,ISNULL(ca.EndTime,getdate()) as EndTime,
+ISNULL(ca.TechnicianRemarks,'') as TechnicianRemarks,ISNULL(ca.ServiceStartTime,getdate()) as ServiceStartTime,
+ISNULL(ca.ServiceEndTime,getdate()) as ServiceEndTime,ISNULL(ca.AssignedTime,getdate()) as AssignedTime,
+ISNULL(ca.StartLocation,'') as StartLocation,ISNULL(ca.Amount,0) as Amount,ca.Status,ca.SysTime,
+(select  Name from UsersServiceProvider usp where usp.Id=ca.TechnicianId) as TechnicianName,
+(select Name from TechnicianStatus ts where ts.Id=ca.Status) as ServiceStatus,
+(select  DATEDIFF(MINUTE, StartTime,EndTime) ) as ServiceHours
+from CallAssign ca where ca.ServiceBookingId=@bookingid
+End
+
+===============================================chnages by sabitha=21-Jun-2021===============================
+
+
+
+alter procedure [dbo].[spGetAllCallAssignWithTechnicianId]  
+@technicianid int    
+As    
+Begin    
+ 
+select ca.Id,ca.ServiceBookingId,ca.CustomerId,ISNULL((ca.TechnicianId),0)as TechnicianId,  
+ISNULL((ca.StartTime),getdate())as StartTime,ISNULL((ca.EndTime),getdate())as EndTime,  
+ISNULL((ca.TechnicianRemarks),'')as TechnicianRemarks,  
+ISNULL((ca.ServiceStartTime),getdate())as ServicesStartTime,  
+ISNULL((ca.ServiceEndTime),getdate())as ServiceEndTime,ca.AssignedTime,ca.AssignedBy,
+ISNULL((ca.StartLocation),'')as StartLocation,ISNULL((ca.Amount),0)as Amount,ca.Status,
+sb.ServiceName,sb.UserName as CustomerName,sb.Mobile,sb.Address,
+sb.Latitude,sb.Longitude,sb.ServiceDate,sb.ServiceTime,sb.ServiceType,  
+ISNULL((sb.AdminRemarks),'')as AdminRemarks,IsNull((sb.Remarks),'')as UserRemarks,
+IsNull((sb.SupervisorRemarks),'')as SupervisorRemarks,
+ISNULL(sb.ServiceBookingNo,'') as ServiceBookingNo,ISNULL(sb.InvoiceNo,0) as InvoiceNo,
+ISNULL(sb.InvoiceDate,getdate()) as Invoicedate,sb.Status as ServiceBookingStatus from CallAssign ca  
+inner join ServiceBooking sb On ca.ServiceBookingId=sb.Id  
+where ca.TechnicianId=@technicianid    
+End
+
+
+
+=======================================changes by sabitha-22-Jun-2021==========================
+
+
+alter procedure [dbo].spGetAllBillDetailsWithBookingId    
+@bookingid int    
+as    
+Begin    
+declare @technicianid int=(Select TechnicianId from ServiceBooking  sb where sb.Id=@bookingid)  
+select sb.ServiceId,sb.ServiceName,sb.UserId,sb.UserName,sb.Mobile,sb.Address,    
+sb.LocationId,sb.Latitude,sb.Longitude,sb.PaymentType,sb.Amount,sb.ServiceDate,    
+sb.serviceTime,sb.ServiceType,sb.Remarks,ISNULL(sb.OfferCode,'') as OfferCode,sb.Discount,sb.SupervisorId,    
+sb.Status,sb.Systime,ISNULL(sb.TechnicianId,0) as TechnicianId,ISNULL(sb.AdminRemarks,'') as AdminRemarks,    
+ISNULL(sb.SupervisorRemarks,'') as SupervisorRemarks,  
+ISNULL(sb.ProposedAmount,0) as ProposedAmount,sb.ServiceStatus,ISNULL(sb.ServiceBookingNo,'') as ServiceBookingNo,    
+ISNULL(sb.InvoiceNo,'') as InvoiceNo,ISNULL(sb.InvoiceDate,getdate()) as InvoiceDate,  
+(select  DATEDIFF(MINUTE,(Select Top 1 ISNULL(StartTime,getdate()) as StartTime from CallAssign ca where ca.ServiceBookingId=@bookingid order by Id asc),  
+(Select top 1 ISNULL(EndTime,getdate()) as EndTime from CallAssign ca where ca.ServiceBookingId=@bookingid order by Id desc)) ) as ServiceHours,  
+(Select ISNULL(TechnicianRemarks,'')  from CallAssign ca where ca.ServiceBookingId=@bookingid and sb.TechnicianId=@technicianid) as TechnicianRemarks,  
+(Select SUM(ISNULL(Amount,0) ) from CallAssign ca where ca.ServiceBookingId=@bookingid) as AdditionalAmount  
+from ServiceBooking sb     
+where sb.Id=@bookingid    
+End    
+
+
+alter procedure [dbo].spGetServiceRateChartmappingWithServiceId       
+@serviceid int      
+as      
+Begin      
+select Id,Name,ServiceId,UptoHours,Amount,(SELECT FORMAT(UptoHours,'HH:mm')) as ServiceHours,  
+(Select ISNULL(AdditionalRate,0) from Services where Id=ServiceId) as AdditionalRate from ServiceRateChartMapping where ServiceId=@serviceid      
+End
+
+
+alter procedure [dbo].[spUserLoginCheck] 
+@UserName nvarchar(100),  
+@Password nvarchar(15)  
+As  
+Begin  
+(select Id,Name,Status,Mobile,Email,Address,PhoneNumber,CityId,Password,UserType,ISNULL(IsBill,0) as IsBill,0 as IsAuthorise,ISNULL(IsBooking,0) as IsBooking  from UsersServiceProvider where(Email=@UserName or Mobile=@UserName)   
+and Password=@Password and Status<>1)  
+union   
+(select Id,Name,Status,Mobile,Email,Address,PhoneNumber,CityId,Password,UserType,0 as IsBill,0 as IsAuthorise,0 as IsBooking from UsersAdmin where(Email=@UserName or Mobile=@UserName)  
+and Password=@Password and Status<>1)  
+union  
+(select Id,Name,Status,Mobile,Email,Address,PhoneNumber,CityId,Password,UserType,ISNULL(IsBill,0) as IsBill,
+ISNULL(IsAuthorise,0) as IsAuthorise,ISNULL(IsBooking,0) as IsBooking from UsersSupervisor where(Email=@UserName or Mobile=@UserName)  
+and Password=@Password and Status<>1)   
+End
+
+
+
+create procedure [dbo].spUpdateBillAmountWithServiceBookingId
+@amount float,
+@bookingid int
+as
+Begin Try
+update ServiceBooking set ProposedAmount=@amount where Id=@bookingid
+select @bookingid  as Id,CAST(@@Error as int) as Error
+End Try
+Begin catch
+select 0  as Id,CAST(@@Error as int) as Error
+End catch
+
+============================================chnaes by sabitha-24-Jun-2021===================
+
+
+
+create procedure [dbo].spGetAllServicesWithLocationId  
+@locationid int  
+as  
+Begin  
+select csm.Id as CityServiceMappingId,csm.ServiceId,csm.CityId,csm.IsLive,csm.Rules,
+csm.Description,s.Id,s.Name,s.Code,s.ImagePath,s.Description as ServiceDescription,s.Rules as ServiceRules,  
+s.CategoryId,s.UserId,s.RateChart,s.AdvanceAmount,s.AdditionalRate,  
+(select top 1 Id from UsersSupervisor us where us.ServiceId=s.Id and Status=0) as SupervisorId from  
+CityServiceMapping csm inner join   
+Services s on csm.ServiceId=s.Id where csm.CityId=@locationid and s.Status=0  
+End
+
+
+
+create table [dbo].SupervisorLocationServiceMapping(
+Id int primary key Identity(1,1),
+SupervisorId int,
+LocationId int,
+ServiceId int
+)
+
+
+alter table SupervisorLocationServiceMapping
+add CityServiceMappingId int
+
+create type SupervisorLocationServiceMappingList as Table(
+SupervisorId int,
+LocationId int,
+ServiceId int,
+CityServiceMappingId int
+)
+
+
+
+CREATE TYPE [dbo].[ListOfId] AS TABLE(
+	[Id] [int] NULL
+)
+
+
+create procedure [dbo].spGetAllServicesForSupervisorWithLocationId
+@LocationId ListOfId readonly  
+as
+Begin
+select csm.Id as CityServiceMappingId,csm.ServiceId,csm.CityId,csm.IsLive,csm.Rules,
+(select Name from Location l where l.Id=csm.CityId) as LocationName,
+csm.Description,s.Id,s.Name,s.Code,s.ImagePath,s.Description as ServiceDescription,s.Rules as ServiceRules,  
+s.CategoryId,s.UserId,s.RateChart,s.AdvanceAmount,s.AdditionalRate   from  
+CityServiceMapping csm inner join   
+Services s on csm.ServiceId=s.Id where csm.CityId in (select Id from @LocationId) and s.Status=0 
+End
+
+
+
+alter procedure [dbo].[spGetAllUsersSupervisor]  
+As  
+Begin   
+select us.Id,us.Name,us.Mobile,us.Email,us.Address,us.Password,us.PhoneNumber,us.CityId,us.Status,us.IsBill,us.IsAuthorise,us.IsBooking   
+from UsersSupervisor us  
+where us.Status!=1   
+End
+
+
+create procedure spGetAllSupervisorLocationServiceMappingWithSupervisorId
+@supervisorid int
+as
+Begin
+select Id,SupervisorId,LocationId,ServiceId,CityServiceMappingId  
+from SupervisorLocationServiceMapping where SupervisorId=@supervisorid
+End
+
+
+alter procedure [dbo].[spGetAllUsersSupervisor]    
+As    
+Begin     
+select us.Id,us.Name,us.Mobile,us.Email,us.Address,us.Password,us.PhoneNumber,us.CityId,
+us.Status,us.IsBill,us.IsAuthorise,us.IsBooking,     
+ServiceName=STUFF((select','+se.Name from SupervisorLocationServiceMapping spsm 
+	inner join 
+	[Services] se on se.Id=spsm.ServiceId where spsm.SupervisorId=us.Id FOR XML PATH('')),1,1,''),
+	LocationName=STUFF((select distinct','+le.Name from SupervisorLocationServiceMapping spsm 
+	inner join 
+	[Location] le on le.Id=spsm.LocationId where spsm.SupervisorId=us.Id FOR XML PATH('')),1,1,'')
+from UsersSupervisor us    
+where us.Status!=1     
+End
+
+
+
+
+ALTER procedure [dbo].[spGetMastersCount]  
+as  
+Begin  
+Select (select Count(*) from [Category] where Status<>1) as CategoryCount ,  
+(select Count(*) from [Services] where Status<>1) as ServiceCount,  
+(select count(*) from [UsersAdmin] where Status<> 1) as UsersCount,  
+(select count(*) from [Location] where Status<>1) as LocationCount,  
+(select count(*) from [UsersSupervisor] where Status<>1 ) as SupervisorCount,  
+(select count(*)  from UsersServiceProvider usp   
+ inner join Location lo on lo.id=usp.CityId   
+ inner join UsersSupervisor us on us.Id=usp.SupervisorId  
+    where usp.Status !=1) as TechnicianCount,  
+( select count(distinct l.Id)  from [Location] l inner join   
+CityServiceMapping csm on csm.CityId=l.Id  
+where l.Status<>1) as CityServiceMappingCount,
+(select Count(*) from ServiceTimeSlots sts where sts.Status<>1) as TimeSlotCount
+End
+
+
+
+creae procedure [dbo].spGetAllSupervisorWithLocationId
+@locationid int,
+@items ListOfId readonly 
+as
+Begin
+select slsm.Id,slsm.SupervisorId,slsm.LocationId,slsm.ServiceId,slsm.CityServicemappingId,
+su.Name,su.Email,su.Mobile from SupervisorLocationServiceMapping slsm inner join UsersSupervisor su
+on su.Id=slsm.SupervisorId where slsm.LocationId=@locationid and slsm.ServiceId in (select Id from @items)
+End
+
+
+
+ALTER TABLE [dbo].[UsersSupervisor] DROP CONSTRAINT [FK__UsersSupe__CityI__30F848ED]
+
+
+==============================================changes by sabitha-26-Jun-2021=========================
+
+
+
+alter procedure [dbo].[spGetAllBookingDetails]                 
+  As            
+  Begin             
+  select sb.Id as ServiceBookingId,sb.ServiceName,sb.SysTime,sb.ServiceDate,sb.ServiceTime,          
+  sb.PaymentType,sb.SupervisorId,sb.Status,sb.UserId,ISNULL(sb.TechnicianId,0) as TechnicianId ,          
+  sb.Amount,sb.Address,sb.LocationId,sb.ServiceId,sb.Longitude,sb.Latitude,sb.ServiceType,            
+  ISNULL(sb.Remarks,'') as Remarks,ISNULL(sb.ServiceStatus,0) as ServiceStatus,    
+  ISNULL(sb.AdminRemarks,'') as AdminRemarks,ISNULL(sb.SupervisorRemarks,'') as SupervisorRemarks,    
+  ISNULL(sb.TechnicianRemarks,'') as TechnicianRemarks,    
+  ISNULL((select top 1 Amount from CallAssign where ServiceBookingId=sb.Id ),0) as AdditionalAmount,  
+  --ISNULL((select DATEDIFF(MINUTE,ISNULL((Select top 1 StartTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id asc),getdate()),  
+  --ISNULL((Select top 1 EndTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id desc),getdate()))),0)  as ServiceHours,  
+  ISNULL((select Sum(ServiceHours) from CallAssign ca where ca.ServiceBookingId=sb.Id),0) as ServiceHours,
+  ISNULL((select top 1 Name from UsersSupervisor where Id=sb.SupervisorId),'') as SupervisorName,            
+  ISNULL((select top 1 Name from Location where Id=sb.LocationId),0) as Location,          
+  ISNULL((select top 1 Name from UsersServiceProvider where Id=sb.TechnicianId),'') as TechnicianName,
+  ISNULL((select Address from Users where Id=sb.UserId),'')As UserAddress  ,    
+  ISNULL((Select Name from Users where Id=sb.UserId ),'')as Name,
+  ISNULL((Select Mobile from Users where Id=sb.UserId ),'')as Mobile,    
+  ISNULL((Select Email from Users where Id=sb.UserId ),'')as Email    
+  from ServiceBooking sb   where sb.status!=4          
+  order by sb.Id desc    
+  End
+
+  alter procedure [dbo].[spGetAllBookingDetailsWithSupervisorId]  
+  @supervisorid int  
+  As  
+  Begin  
+    select sb.Id as ServiceBookingId,sb.ServiceName,sb.SysTime,sb.ServiceDate,sb.ServiceTime,          
+  sb.PaymentType,sb.SupervisorId,sb.Status,sb.UserId,ISNULL(sb.TechnicianId,0) as TechnicianId ,          
+  sb.Amount,sb.Address,sb.LocationId,sb.ServiceId,sb.Longitude,sb.Latitude,sb.ServiceType,            
+  ISNULL(sb.Remarks,'') as Remarks,ISNULL(sb.ServiceStatus,0) as ServiceStatus,    
+  ISNULL(sb.AdminRemarks,'') as AdminRemarks,ISNULL(sb.SupervisorRemarks,'') as SupervisorRemarks,    
+  ISNULL(sb.TechnicianRemarks,'') as TechnicianRemarks,    
+  ISNULL((select top 1 Name from UsersSupervisor where Id=sb.SupervisorId),'') as SupervisorName,  
+   ISNULL((select top 1 Amount from CallAssign where ServiceBookingId=sb.Id ),0) as AdditionalAmount,  
+  --ISNULL((select DATEDIFF(MINUTE,ISNULL((Select top 1 StartTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id asc),getdate()),  
+  --ISNULL((Select top 1 EndTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id desc),getdate())) ),0)  as ServiceHours, 
+   ISNULL((select Sum(ServiceHours) from CallAssign ca where ca.ServiceBookingId=sb.Id),0) as ServiceHours,
+  ISNULL((select top 1 Name from Location where Id=sb.LocationId),0) as Location,          
+  ISNULL((select top 1 Name from UsersServiceProvider where Id=sb.TechnicianId),'') as TechnicianName,  
+  ISNULL((select Address from Users where Id=sb.UserId),'')As UserAddress  ,    
+  ISNULL((Select Name from Users where Id=sb.UserId ),'')as Name,  
+  ISNULL((Select Mobile from Users where Id=sb.UserId ),'')as Mobile,    
+  ISNULL((Select Email from Users where Id=sb.UserId ),'')as Email    
+  from ServiceBooking sb    
+   where sb.SupervisorId=@supervisorid and sb.Status!=4  
+  order by sb.Id desc   
+  End
+
+
+
+  alter procedure [dbo].[spGetAllClosedReports]    
+@fromdate datetime,  
+@todate datetime  
+  As            
+  Begin    
+ select sb.Id as ServiceBookingId,sb.ServiceName,sb.SysTime,sb.ServiceDate as BookingDate,sb.ServiceTime,          
+  sb.PaymentType,sb.SupervisorId,sb.Status,sb.UserId,ISNULL(sb.TechnicianId,0) as TechnicianId ,sb.proposedAmount as TotalAmount,          
+  sb.Amount,sb.Address,sb.LocationId,sb.ServiceId,sb.Longitude,sb.Latitude,sb.ServiceType,            
+  ISNULL(sb.Remarks,'') as Remarks,ISNULL(sb.ServiceStatus,0) as ServiceStatus,    
+  ISNULL(sb.AdminRemarks,'') as AdminRemarks,ISNULL(sb.SupervisorRemarks,'') as SupervisorRemarks,    
+    ISNULL((select top 1 ServiceStartTime from CallAssign where ServiceBookingId=sb.Id order by Id asc),getdate()) as ServiceStartDate,  
+  ISNULL((select top 1 ServiceEndTime from CallAssign where ServiceBookingId=sb.Id order by Id desc ),getdate()) as ServiceEndDate,  
+   --(select top 1  ServiceStartTime from CallAssign where ServiceBookingId=sb.Id order by Id asc)  as ServiceStartDate,  
+    --(select top 1  ServiceEndTime from CallAssign where ServiceBookingId=sb.Id order by Id desc) as ServiceEndDate,  
+  ISNULL((select top 1 Amount from CallAssign where ServiceBookingId=sb.Id ),0) as AdditionalAmount, 
+    ISNULL((select Sum(ServiceHours) from CallAssign ca where ca.ServiceBookingId=sb.Id),0) as ServiceHours,
+  --ISNULL((select DATEDIFF(MINUTE,ISNULL((Select top 1 StartTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id asc),getdate()),  
+  -- ISNULL((Select top 1 EndTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id desc),getdate()))),0)  as ServiceHours,  
+  ISNULL((select top 1 Name from UsersSupervisor where Id=sb.SupervisorId),'') as SupervisorName,            
+  ISNULL((select top 1 Name from Location where Id=sb.LocationId),0) as Location,           
+   TechnicianName=ISNULL((STUFF((SELECT ', ' + usm.Name      
+           FROM [UsersServiceProvider]usm     
+     inner join [CallAssign] ca on ca.TechnicianId=usm.Id  
+           WHERE ca.ServiceBookingId=sb.Id    
+          FOR XML PATH('')), 1, 2, '')),'') ,  
+  ISNULL((select Address from Users where Id=sb.UserId),'')As UserAddress  ,    
+  ISNULL((Select Name from Users where Id=sb.UserId ),'')as Name,
+  ISNULL((Select Mobile from Users where Id=sb.UserId ),'')as Mobile,    
+  ISNULL((Select Email from Users where Id=sb.UserId ),'')as Email    
+  from ServiceBooking sb   where sb.Status=4   and sb.SysTime between @fromdate and @todate       
+   End
+
+
+   alter procedure [dbo].[spGetAllCallReports]   
+@fromdate datetime,  
+@todate datetime  
+  As            
+  Begin    
+  
+ select sb.Id as ServiceBookingId,sb.ServiceName,sb.SysTime,sb.ServiceDate as BookingDate,sb.ServiceTime,          
+  sb.PaymentType,sb.SupervisorId,sb.Status,sb.UserId,ISNULL(sb.TechnicianId,0) as TechnicianId ,sb.proposedAmount as TotalAmount,          
+  sb.Amount,sb.Address,sb.LocationId,sb.ServiceId,sb.Longitude,sb.Latitude,sb.ServiceType,            
+  ISNULL(sb.Remarks,'') as Remarks,ISNULL(sb.ServiceStatus,0) as ServiceStatus,    
+  ISNULL(sb.AdminRemarks,'') as AdminRemarks,ISNULL(sb.SupervisorRemarks,'') as SupervisorRemarks,   
+    ISNULL((select top 1 ServiceStartTime from CallAssign where ServiceBookingId=sb.Id order by Id asc),getdate()) as ServiceStartDate,  
+  ISNULL((select top 1 ServiceEndTime from CallAssign where ServiceBookingId=sb.Id order by Id desc ),getdate()) as ServiceEndDate,  
+  --(select top 1  ServiceStartTime from CallAssign where ServiceBookingId=sb.Id order by Id asc)  as ServiceStartDate,  
+ --(select top 1  ServiceEndTime from CallAssign where ServiceBookingId=sb.Id order by Id desc) as ServiceEndDate,  
+  ISNULL((select top 1 Amount from CallAssign where ServiceBookingId=sb.Id ),0) as AdditionalAmount,  
+  --ISNULL((select DATEDIFF(MINUTE,ISNULL((Select top 1 StartTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id asc),getdate()),  
+  --ISNULL((Select top 1 EndTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id desc),getdate()))),0)  as ServiceHours, 
+   ISNULL((select Sum(ServiceHours) from CallAssign ca where ca.ServiceBookingId=sb.Id),0) as ServiceHours,
+  ISNULL((select top 1 Name from UsersSupervisor where Id=sb.SupervisorId),'') as SupervisorName,            
+  ISNULL((select top 1 Name from Location where Id=sb.LocationId),0) as Location,          
+  --ISNULL((select top 1 Name from UsersServiceProvider where Id=sb.TechnicianId),'') as TechnicianName  
+ TechnicianName=ISNULL((STUFF((SELECT ', ' + usm.Name      
+           FROM [UsersServiceProvider]usm     
+     inner join [CallAssign] ca on ca.TechnicianId=usm.Id  
+           WHERE ca.ServiceBookingId=sb.Id    
+          FOR XML PATH('')), 1, 2, '')),'')   
+  ,ISNULL((select Address from Users where Id=sb.UserId),'')As UserAddress  ,    
+  ISNULL((Select Name from Users where Id=sb.UserId ),'')as Name,
+  ISNULL((Select Mobile from Users where Id=sb.UserId ),'')as Mobile,    
+  ISNULL((Select Email from Users where Id=sb.UserId ),'')as Email    
+  from ServiceBooking sb   where sb.Status!=4 and sb.SysTime between @fromdate and @todate  
+   
+   End
+
+
+
+   alter procedure dbo].spEndCallAssign    
+@callassignid int,    
+@remarks nvarchar(100),    
+@amount float,    
+@status int    
+as    
+Begin Try    
+update CallAssign set EndTime=getdate(),ServiceEndTime=getdate(),TechnicianRemarks=@remarks,    
+Amount=@amount,Status=@status,ServiceHours=(select DATEDIFF(Minute,(select ServiceStartTime from CallAssign where Id=@callassignid),getdate()) where Id=@callassignid)    
+declare @servicebookingid int=(select ServiceBookingId from CallAssign  where Id=@callassignid )  
+update ServiceBooking set ServiceStatus=@status where Id=@servicebookingid  
+select @callassignid as Id,Cast(@@Error as int) as Error    
+End Try    
+Begin catch    
+select 0 as Id,Cast(@@Error as int) as Error    
+End catch    
+
+
+alter procedure [dbo].spGetAllBillDetailsWithBookingId  
+@bookingid int          
+as          
+Begin          
+declare @technicianid int=(Select TechnicianId from ServiceBooking  sb where sb.Id=@bookingid)        
+select sb.ServiceId,sb.ServiceName,sb.UserId,sb.UserName,sb.Mobile,sb.Address,          
+sb.LocationId,sb.Latitude,sb.Longitude,sb.PaymentType,sb.Amount,sb.ServiceDate,          
+sb.serviceTime,sb.ServiceType,sb.Remarks,ISNULL(sb.OfferCode,'') as OfferCode,sb.Discount,sb.SupervisorId,          
+sb.Status,sb.Systime,ISNULL(sb.TechnicianId,0) as TechnicianId,ISNULL(sb.AdminRemarks,'') as AdminRemarks,          
+ISNULL(sb.SupervisorRemarks,'') as SupervisorRemarks,          
+ISNULL(sb.ProposedAmount,0) as ProposedAmount,sb.ServiceStatus,ISNULL(sb.ServiceBookingNo,'') as ServiceBookingNo,          
+ISNULL(sb.InvoiceNo,'') as InvoiceNo,ISNULL(sb.InvoiceDate,getdate()) as InvoiceDate,        
+--(select  DATEDIFF(MINUTE,(Select Top 1 ISNULL(StartTime,getdate()) as StartTime from CallAssign ca where ca.ServiceBookingId=@bookingid order by Id asc),        
+--(Select top 1 ISNULL(EndTime,getdate()) as EndTime from CallAssign ca where ca.ServiceBookingId=@bookingid order by Id desc)) ) as ServiceHours,   
+ ISNULL((select Sum(ServiceHours) from CallAssign ca where ca.ServiceBookingId=@bookingid),0) as ServiceHours,
+(Select ISNULL(TechnicianRemarks,'')  from CallAssign ca where ca.ServiceBookingId=@bookingid and ca.TechnicianId=@technicianid) as TechnicianRemarks,        
+(Select SUM(ISNULL(Amount,0) ) from CallAssign ca where ca.ServiceBookingId=@bookingid) as AdditionalAmount        
+from ServiceBooking sb           
+where sb.Id=@bookingid          
+End      
+  
+
+  ALTER procedure [dbo].[spGetMastersCount]  
+as  
+Begin  
+Select (select Count(*) from [Category] where Status<>1) as CategoryCount ,  
+(select Count(*) from [Services] where Status<>1) as ServiceCount,  
+(select count(*) from [UsersAdmin] where Status<> 1) as UsersCount,  
+(select count(*) from [Location] where Status<>1) as LocationCount,  
+(select count(*) from [UsersSupervisor] where Status<>1 ) as SupervisorCount,  
+(select count(*)  from UsersServiceProvider usp   
+ inner join Location lo on lo.id=usp.CityId   
+ inner join UsersSupervisor us on us.Id=usp.SupervisorId  
+    where usp.Status !=1) as TechnicianCount,  
+( select count(distinct l.Id)  from [Location] l inner join   
+CityServiceMapping csm on csm.CityId=l.Id  
+where l.Status<>1) as CityServiceMappingCount,
+(select Count(*) from ServiceTimeSlots sts where sts.Status<>1) as TimeSlotCount,
+(select Count(*) from TechnicianStatus ts where Name<>'Started' and Name<>'Ended' and Status<>1) as StatusCount,
+(select Count(*) from AnnouncementGroup ag where Status<>1) as AnnouncementCount
+End
+  
+
+
+  alter procedure [dbo].[spGetAllBookingDetails]                   
+  As              
+  Begin               
+  select sb.Id as ServiceBookingId,sb.ServiceName,sb.SysTime,sb.ServiceDate,sb.ServiceTime,            
+  sb.PaymentType,sb.SupervisorId,sb.Status,sb.UserId,ISNULL(sb.TechnicianId,0) as TechnicianId ,            
+  sb.Amount,sb.Address,sb.LocationId,sb.ServiceId,sb.Longitude,sb.Latitude,sb.ServiceType,              
+  ISNULL(sb.Remarks,'') as Remarks,ISNULL(sb.ServiceStatus,0) as ServiceStatus,      
+  ISNULL(sb.AdminRemarks,'') as AdminRemarks,ISNULL(sb.SupervisorRemarks,'') as SupervisorRemarks,      
+  ISNULL(sb.TechnicianRemarks,'') as TechnicianRemarks,      
+  ISNULL((select top 1 Amount from CallAssign where ServiceBookingId=sb.Id ),0) as AdditionalAmount,    
+  --ISNULL((select DATEDIFF(MINUTE,ISNULL((Select top 1 StartTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id asc),getdate()),    
+  --ISNULL((Select top 1 EndTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id desc),getdate()))),0)  as ServiceHours,    
+  ISNULL((select Sum(ServiceHours) from CallAssign ca where ca.ServiceBookingId=sb.Id),0) as ServiceHours,  
+  ISNULL((select top 1 Name from UsersSupervisor where Id=sb.SupervisorId),'') as SupervisorName,sb.ServiceBookingNo,              
+  ISNULL((select top 1 Name from Location where Id=sb.LocationId),0) as Location,            
+  ISNULL((select top 1 Name from UsersServiceProvider where Id=sb.TechnicianId),'') as TechnicianName,  
+  ISNULL((select Address from Users where Id=sb.UserId),'')As UserAddress  ,      
+  ISNULL((Select Name from Users where Id=sb.UserId ),'')as Name,  
+  ISNULL((Select Mobile from Users where Id=sb.UserId ),'')as Mobile,      
+  ISNULL((Select Email from Users where Id=sb.UserId ),'')as Email      
+  from ServiceBooking sb   where sb.status!=4            
+  order by sb.Id desc      
+  End
+
+
+
+  ALTER procedure [dbo].[spGetAllBookingDetailsWithSupervisorId]   
+  @supervisorid int  
+  As  
+  Begin  
+    select sb.Id as ServiceBookingId,sb.ServiceName,sb.SysTime,sb.ServiceDate,sb.ServiceTime,          
+  sb.PaymentType,sb.SupervisorId,sb.Status,sb.UserId,ISNULL(sb.TechnicianId,0) as TechnicianId ,          
+  sb.Amount,sb.Address,sb.LocationId,sb.ServiceId,sb.Longitude,sb.Latitude,sb.ServiceType,            
+  ISNULL(sb.Remarks,'') as Remarks,ISNULL(sb.ServiceStatus,0) as ServiceStatus,    
+  ISNULL(sb.AdminRemarks,'') as AdminRemarks,ISNULL(sb.SupervisorRemarks,'') as SupervisorRemarks,    
+  ISNULL(sb.TechnicianRemarks,'') as TechnicianRemarks,    
+  ISNULL((select top 1 Name from UsersSupervisor where Id=sb.SupervisorId),'') as SupervisorName,  
+   ISNULL((select top 1 Amount from CallAssign where ServiceBookingId=sb.Id ),0) as AdditionalAmount,  
+  --ISNULL((select DATEDIFF(MINUTE,ISNULL((Select top 1 StartTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id asc),getdate()),  
+  --ISNULL((Select top 1 EndTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id desc),getdate())) ),0)  as ServiceHours, 
+   ISNULL((select Sum(ServiceHours) from CallAssign ca where ca.ServiceBookingId=sb.Id),0) as ServiceHours,
+  ISNULL((select top 1 Name from Location where Id=sb.LocationId),0) as Location,sb.ServiceBookingNo,          
+  ISNULL((select top 1 Name from UsersServiceProvider where Id=sb.TechnicianId),'') as TechnicianName,  
+  ISNULL((select Address from Users where Id=sb.UserId),'')As UserAddress  ,    
+  ISNULL((Select Name from Users where Id=sb.UserId ),'')as Name,  
+  ISNULL((Select Mobile from Users where Id=sb.UserId ),'')as Mobile,    
+  ISNULL((Select Email from Users where Id=sb.UserId ),'')as Email    
+  from ServiceBooking sb    
+   where sb.SupervisorId=@supervisorid and sb.Status!=4  
+  order by sb.Id desc   
+  End
+
+
+
+  alter procedure [dbo].[spGetAllTechniciansListWithServices]     
+      
+  As    
+  Begin    
+ select distinct u.Id,u.name,u.Mobile,u.Email,u.Address,u.PhoneNumber,u.CityId as LocationId,u.SupervisorId,    
+ s.ServiceId  from UsersServiceProvider u inner join ServiceProviderServiceMapping s    
+ on s.UsersServiceProviderId=u.Id where u.Status<>1    
+
+  End 
+
+
+
+  alter procedure [dbo].[spGetAllCallReports]     
+@fromdate datetime,    
+@todate datetime    
+  As              
+  Begin      
+    
+ select sb.Id as ServiceBookingId,sb.ServiceName,sb.SysTime,sb.ServiceDate as BookingDate,sb.ServiceTime,            
+  sb.PaymentType,sb.SupervisorId,sb.Status,sb.UserId,ISNULL(sb.TechnicianId,0) as TechnicianId ,sb.proposedAmount as TotalAmount,            
+  sb.Amount,sb.Address,sb.LocationId,sb.ServiceId,sb.Longitude,sb.Latitude,sb.ServiceType,              
+  ISNULL(sb.Remarks,'') as Remarks,ISNULL(sb.ServiceStatus,0) as ServiceStatus,sb.ServiceBookingNo,      
+  ISNULL(sb.AdminRemarks,'') as AdminRemarks,ISNULL(sb.SupervisorRemarks,'') as SupervisorRemarks,     
+    ISNULL((select top 1 ServiceStartTime from CallAssign where ServiceBookingId=sb.Id order by Id asc),getdate()) as ServiceStartDate,    
+  ISNULL((select top 1 ServiceEndTime from CallAssign where ServiceBookingId=sb.Id order by Id desc ),getdate()) as ServiceEndDate,    
+  --(select top 1  ServiceStartTime from CallAssign where ServiceBookingId=sb.Id order by Id asc)  as ServiceStartDate,    
+ --(select top 1  ServiceEndTime from CallAssign where ServiceBookingId=sb.Id order by Id desc) as ServiceEndDate,    
+  ISNULL((select top 1 Amount from CallAssign where ServiceBookingId=sb.Id ),0) as AdditionalAmount,    
+  --ISNULL((select DATEDIFF(MINUTE,ISNULL((Select top 1 StartTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id asc),getdate()),    
+  --ISNULL((Select top 1 EndTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id desc),getdate()))),0)  as ServiceHours,   
+   ISNULL((select Sum(ServiceHours) from CallAssign ca where ca.ServiceBookingId=sb.Id),0) as ServiceHours,  
+  ISNULL((select top 1 Name from UsersSupervisor where Id=sb.SupervisorId),'') as SupervisorName,              
+  ISNULL((select top 1 Name from Location where Id=sb.LocationId),0) as Location,            
+  --ISNULL((select top 1 Name from UsersServiceProvider where Id=sb.TechnicianId),'') as TechnicianName    
+ TechnicianName=ISNULL((STUFF((SELECT ', ' + usm.Name        
+           FROM [UsersServiceProvider]usm       
+     inner join [CallAssign] ca on ca.TechnicianId=usm.Id    
+           WHERE ca.ServiceBookingId=sb.Id      
+          FOR XML PATH('')), 1, 2, '')),'')     
+  ,ISNULL((select Address from Users where Id=sb.UserId),'')As UserAddress  ,      
+  ISNULL((Select Name from Users where Id=sb.UserId ),'')as Name,  
+  ISNULL((Select Mobile from Users where Id=sb.UserId ),'')as Mobile,      
+  ISNULL((Select Email from Users where Id=sb.UserId ),'')as Email      
+  from ServiceBooking sb   where sb.Status!=4 and sb.SysTime between @fromdate and @todate    
+     
+   End
+
+
+
+   alter procedure [dbo].[spGetAllClosedReports]      
+@fromdate datetime,    
+@todate datetime    
+  As              
+  Begin      
+ select sb.Id as ServiceBookingId,sb.ServiceName,sb.SysTime,sb.ServiceDate as BookingDate,sb.ServiceTime,            
+  sb.PaymentType,sb.SupervisorId,sb.Status,sb.UserId,ISNULL(sb.TechnicianId,0) as TechnicianId ,sb.proposedAmount as TotalAmount,            
+  sb.Amount,sb.Address,sb.LocationId,sb.ServiceId,sb.Longitude,sb.Latitude,sb.ServiceType,              
+  ISNULL(sb.Remarks,'') as Remarks,ISNULL(sb.ServiceStatus,0) as ServiceStatus,      
+  ISNULL(sb.AdminRemarks,'') as AdminRemarks,ISNULL(sb.SupervisorRemarks,'') as SupervisorRemarks,      
+    ISNULL((select top 1 ServiceStartTime from CallAssign where ServiceBookingId=sb.Id order by Id asc),getdate()) as ServiceStartDate,    
+  ISNULL((select top 1 ServiceEndTime from CallAssign where ServiceBookingId=sb.Id order by Id desc ),getdate()) as ServiceEndDate,    
+   --(select top 1  ServiceStartTime from CallAssign where ServiceBookingId=sb.Id order by Id asc)  as ServiceStartDate,    
+    --(select top 1  ServiceEndTime from CallAssign where ServiceBookingId=sb.Id order by Id desc) as ServiceEndDate,    
+  ISNULL((select top 1 Amount from CallAssign where ServiceBookingId=sb.Id ),0) as AdditionalAmount,sb.ServiceBookingNo,      
+    ISNULL((select Sum(ServiceHours) from CallAssign ca where ca.ServiceBookingId=sb.Id),0) as ServiceHours,  
+  --ISNULL((select DATEDIFF(MINUTE,ISNULL((Select top 1 StartTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id asc),getdate()),    
+  -- ISNULL((Select top 1 EndTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id desc),getdate()))),0)  as ServiceHours,    
+  ISNULL((select top 1 Name from UsersSupervisor where Id=sb.SupervisorId),'') as SupervisorName,              
+  ISNULL((select top 1 Name from Location where Id=sb.LocationId),0) as Location,             
+   TechnicianName=ISNULL((STUFF((SELECT ', ' + usm.Name        
+           FROM [UsersServiceProvider]usm       
+     inner join [CallAssign] ca on ca.TechnicianId=usm.Id    
+           WHERE ca.ServiceBookingId=sb.Id      
+          FOR XML PATH('')), 1, 2, '')),'') ,    
+  ISNULL((select Address from Users where Id=sb.UserId),'')As UserAddress  ,      
+  ISNULL((Select Name from Users where Id=sb.UserId ),'')as Name,  
+  ISNULL((Select Mobile from Users where Id=sb.UserId ),'')as Mobile,      
+  ISNULL((Select Email from Users where Id=sb.UserId ),'')as Email      
+  from ServiceBooking sb   where sb.Status=4   and sb.SysTime between @fromdate and @todate         
+   End
+
+
+   *************************anu********sep24*********************
+   ALTER procedure [dbo].[spGetAllLiveBookingDetails]  
+@userid int
+  As              
+  Begin               
+  select sb.Id as ServiceBookingId,sb.ServiceName,sb.SysTime,sb.ServiceDate,sb.ServiceTime,sb.UserName,            
+  sb.PaymentType,sb.SupervisorId,sb.Status,sb.UserId,ISNULL(sb.TechnicianId,0) as TechnicianId ,            
+  sb.Amount,sb.Address,sb.LocationId,sb.ServiceId,sb.Longitude,sb.Latitude,sb.ServiceType,              
+  ISNULL(sb.Remarks,'') as Remarks,ISNULL(sb.ServiceStatus,0) as ServiceStatus,      
+  ISNULL(sb.AdminRemarks,'') as AdminRemarks,ISNULL(sb.SupervisorRemarks,'') as SupervisorRemarks,      
+ISNULL((select top 1 TechnicianRemarks from CallAssign where ServiceBookingId=sb.Id ),'') as TechnicianRemarks,      
+  ISNULL((select top 1 Amount from CallAssign where ServiceBookingId=sb.Id ),0) as AdditionalAmount,    
+  --ISNULL((select DATEDIFF(MINUTE,ISNULL((Select top 1 StartTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id asc),getdate()),    
+  --ISNULL((Select top 1 EndTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id desc),getdate()))),0)  as ServiceHours,    
+  ISNULL((select Sum(ServiceHours) from CallAssign ca where ca.ServiceBookingId=sb.Id),0) as ServiceHours,  
+  ISNULL((select top 1 Name from UsersSupervisor where Id=sb.SupervisorId),'') as SupervisorName,sb.ServiceBookingNo,              
+  ISNULL((select top 1 Name from Location where Id=sb.LocationId),0) as Location,            
+  ISNULL((select top 1 Name from UsersServiceProvider where Id=sb.TechnicianId),'') as TechnicianName,  
+    ISNULL((select Address from Users where Id=sb.UserId),'')As UserAddress  ,      
+  ISNULL((Select Name from Users where Id=sb.UserId ),'')as Name,
+     ISNULL((select top 1 Mobile from UsersServiceProvider where Id=sb.TechnicianId),'') as TechnicianMobile 
+  from ServiceBooking sb  where Status!=4 and UserId=@userid            
+  order by sb.Id desc      
+  End
+
+
+***********************************************************************
+ALTER procedure [dbo].[spGetAllPastBookingDetails]  
+@userid int
+  As              
+  Begin               
+  select sb.Id as ServiceBookingId,sb.ServiceName,sb.SysTime,sb.ServiceDate,sb.ServiceTime, sb.UserName,           
+  sb.PaymentType,sb.SupervisorId,sb.Status,sb.UserId,ISNULL(sb.TechnicianId,0) as TechnicianId ,            
+  sb.Amount,sb.Address,sb.LocationId,sb.ServiceId,sb.Longitude,sb.Latitude,sb.ServiceType,              
+  ISNULL(sb.Remarks,'') as Remarks,ISNULL(sb.ServiceStatus,0) as ServiceStatus,      
+  ISNULL(sb.AdminRemarks,'') as AdminRemarks,ISNULL(sb.SupervisorRemarks,'') as SupervisorRemarks,      
+  ISNULL((select top 1 TechnicianRemarks from CallAssign where ServiceBookingId=sb.Id ),'') as TechnicianRemarks,    
+  ISNULL((select top 1 Amount from CallAssign where ServiceBookingId=sb.Id ),0) as AdditionalAmount,    
+  --ISNULL((select DATEDIFF(MINUTE,ISNULL((Select top 1 StartTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id asc),getdate()),    
+  --ISNULL((Select top 1 EndTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id desc),getdate()))),0)  as ServiceHours,    
+  ISNULL((select Sum(ServiceHours) from CallAssign ca where ca.ServiceBookingId=sb.Id),0) as ServiceHours,  
+  ISNULL((select top 1 Name from UsersSupervisor where Id=sb.SupervisorId),'') as SupervisorName,sb.ServiceBookingNo,              
+  ISNULL((select top 1 Name from Location where Id=sb.LocationId),0) as Location,            
+  ISNULL((select top 1 Name from UsersServiceProvider where Id=sb.TechnicianId),'') as TechnicianName, 
+     ISNULL((select top 1 Mobile from UsersServiceProvider where Id=sb.TechnicianId),'') as TechnicianMobile,
+	   ISNULL((select Address from Users where Id=sb.UserId),'')As UserAddress  ,      
+  ISNULL((Select Name from Users where Id=sb.UserId ),'')as Name
+	  
+  from ServiceBooking sb  where Status=4 and  UserId=@userid        
+  order by sb.Id desc      
+  End
+
+******************************************************
+
+ALTER procedure [dbo].[spGetAllBookingDetails]                   
+  As              
+  Begin               
+  select sb.Id as ServiceBookingId,sb.ServiceName,sb.SysTime,sb.ServiceDate,sb.ServiceTime,
+   ISNULL(sb.Mobile,'')as Mobile,sb.UserName,
+  sb.PaymentType,sb.SupervisorId,sb.Status,sb.UserId,ISNULL(sb.TechnicianId,0) as TechnicianId ,            
+  sb.Amount,sb.Address,sb.LocationId,sb.ServiceId,sb.Longitude,sb.Latitude,sb.ServiceType,              
+  ISNULL(sb.Remarks,'') as Remarks,ISNULL(sb.ServiceStatus,0) as ServiceStatus,      
+  ISNULL(sb.AdminRemarks,'') as AdminRemarks,ISNULL(sb.SupervisorRemarks,'') as SupervisorRemarks,      
+  ISNULL((select top 1 TechnicianRemarks from CallAssign where ServiceBookingId=sb.Id ),'') as TechnicianRemarks,    
+  ISNULL((select top 1 Amount from CallAssign where ServiceBookingId=sb.Id ),0) as AdditionalAmount,    
+  --ISNULL((select DATEDIFF(MINUTE,ISNULL((Select top 1 StartTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id asc),getdate()),    
+  --ISNULL((Select top 1 EndTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id desc),getdate()))),0)  as ServiceHours,    
+  ISNULL((select Sum(ServiceHours) from CallAssign ca where ca.ServiceBookingId=sb.Id),0) as ServiceHours,  
+  ISNULL((select top 1 Name from UsersSupervisor where Id=sb.SupervisorId),'') as SupervisorName,sb.ServiceBookingNo,              
+  ISNULL((select top 1 Name from Location where Id=sb.LocationId),0) as Location,            
+  ISNULL((select top 1 Name from UsersServiceProvider where Id=sb.TechnicianId),'') as TechnicianName,  
+  ISNULL((select Address from Users where Id=sb.UserId),'')As UserAddress  ,      
+  ISNULL((Select Name from Users where Id=sb.UserId ),'')as Name,        
+  ISNULL((Select Email from Users where Id=sb.UserId ),'')as Email      
+  from ServiceBooking sb               
+  order by sb.Id desc      
+  End
+
+
+************************************************************
+ALTER procedure [dbo].[spGetAllServices]  
+As  
+Begin  
+--select Id,Name,Code,ImagePath,Description,Rules,CategoryId,UserId,RateChart,Status from [Services] where Status!=1  
+select s.Id,s.Name,s.Code,s.ImagePath,s.Description,s.Rules,s.AdditionalRate,
+s.CategoryId,s.UserId,s.RateChart,s.Status,ISNULL(s.AdvanceAmount,0) as AdvanceAmount,c.Name as CategoryName 
+from [Services] s inner join Category  c 
+on s.CategoryId=c.Id where  
+s.Status!=1  and c.Status=0
+End
+
+************************************************************
+ALTER procedure [dbo].[spGetTopTwelveServicesWithPincode] --'682002'
+@pincode nvarchar(100)
+as
+Begin 
+declare @locationid int=(select top 1 l.Id from LocationArea la inner join Location l on la.LocationId=l.Id    
+where @pincode between la.FromPincode and la.ToPincode and l.Status=0 and la.Status=0)    
+select top 12 s.Id,@locationid as LocationId,s.Name,s.Code,s.ImagePath,s.Description,s.Rules,s.CategoryId,s.UserId,s.RateChart,  
+ISNULL(s.AdvanceAmount,0) as AdvanceAmount,
+ISNULL((select top 1 SupervisorId from SupervisorLocationServiceMapping where ServiceId=s.Id and LocationId=@locationid),0) as SupervisorId,   
+(select c.Name from category c where s.CategoryId =c.Id) as CategoryName    
+ from CityServiceMapping csm inner join 
+[Services] s on csm.ServiceId=s.Id 
+inner join Category  c 
+on s.CategoryId=c.Id
+
+where csm.CityId=@locationid  and s.Status=0 and c.Status=0 order by s.Code asc
+End 
+
+*****************************************************************
+
+
+ALTER procedure [dbo].[spGetAllServiceTimeSlotsWithServiceId]12
+@serviceid int  
+as  
+Begin  
+select  st.Id,CONVERT(time, CAST(st.StartTime AS TIME),0)as StartTime,st.EndTime,st.LocationId,st.ServiceId,st.Status,st.Systime   
+from ServiceTimeSlots st   
+where st.Status<>1
+order by StartTime asc
+End
+
+
+******************************************************
+
+ALTER procedure [dbo].[spGetAllServicesWithPincode]  
+@pincode nvarchar(50)    
+as    
+Begin    
+declare @locationid int=(select top 1 l.Id from LocationArea la inner join Location l on la.LocationId=l.Id    
+where @pincode between la.FromPincode and la.ToPincode and l.Status=0 and la.Status=0)    
+select @locationid as LocationId,s.Id,s.Name,s.Code,s.ImagePath,s.Description,s.Rules,s.CategoryId,s.UserId,s.RateChart,  
+ISNULL(s.AdvanceAmount,0) as AdvanceAmount,
+ISNULL((select top 1 SupervisorId from SupervisorLocationServiceMapping ls inner join UsersSupervisor us on us.Id=SupervisorId  where ls.ServiceId=s.Id and ls.LocationId=@locationid and us.Status=0 ),0) as SupervisorId,   
+(select c.Name from category c where s.CategoryId =c.Id) as CategoryName    
+ from CityServiceMapping csm inner join     
+[Services] s on csm.ServiceId=s.Id where csm.CityId=@locationid  and s.Status=0  
+End
+
+******************************************************************
+create procedure [dbo].[spGetAllSupervisorsWithCityIdAndServiceId] 4,17
+@LocationId int,
+@ServiceId int
+As
+Begin
+
+select u.Id,u.Name,u.Mobile from UsersSupervisor u inner join 
+SupervisorLocationServiceMapping ls on u.Id=ls.SupervisorId
+
+
+where ls.LocationId=@LocationId and ls.ServiceId=@ServiceId and u.Status=0
+
+End
+
+
+********************************************************************
+ALTER procedure [dbo].[spGetAllAnnouncementsWithType]  
+@type int  
+as  
+Begin  
+if @type=0  
+Begin  
+select Id,ISNULL(Name,'')as Name,Type,Status,Systime,OrderNo,ISNULL(ThemeType,0) as ThemeType  from AnnouncementGroup where Status<>1 order by OrderNo asc
+End  
+Else if @type!=0  
+Begin  
+select Id,ISNULL(Name,'')as Name,Type,Status,Systime,OrderNo,ISNULL(ThemeType,0) as ThemeType from AnnouncementGroup where Status<>1 and Type=@type  order by OrderNo asc
+End  
+End
+
+
+*********************************************************************
+
+ALTER procedure [dbo].[spGetAllServiceTimeSlotsWithServiceId]
+@serviceid int  
+as  
+Begin  
+select  st.Id,st.StartTime,st.EndTime,st.LocationId,st.ServiceId,st.Status,st.Systime,  
+CONVERT(nvarchar(10), CAST(st.StartTime AS TIME),0)as StartTimeString
+from ServiceTimeSlots st   
+where st.Status<>1
+order by CAST(st.StartTime AS TIME) asc
+End
+
+**********************************oct 05**********************************
+ALTER procedure [dbo].[spGetAllBookingDetailsWithSupervisorId]  -- 16
+  @supervisorid int  
+  As  
+  Begin  
+    select sb.Id as ServiceBookingId,sb.ServiceName,sb.SysTime,sb.ServiceDate,sb.ServiceTime, 
+	ISNULL(sb.Mobile,'')as Mobile,sb.UserName,
+  sb.PaymentType,sb.SupervisorId,sb.Status,sb.UserId,ISNULL(sb.TechnicianId,0) as TechnicianId ,          
+  sb.Amount,sb.Address,sb.LocationId,sb.ServiceId,sb.Longitude,sb.Latitude,sb.ServiceType,            
+  ISNULL(sb.Remarks,'') as Remarks,ISNULL(sb.ServiceStatus,0) as ServiceStatus,    
+  ISNULL(sb.AdminRemarks,'') as AdminRemarks,ISNULL(sb.SupervisorRemarks,'') as SupervisorRemarks,    
+  ISNULL(sb.TechnicianRemarks,'') as TechnicianRemarks,    
+  ISNULL((select top 1 Name from UsersSupervisor where Id=sb.SupervisorId),'') as SupervisorName,  
+   ISNULL((select top 1 Amount from CallAssign where ServiceBookingId=sb.Id ),0) as AdditionalAmount,  
+  --ISNULL((select DATEDIFF(MINUTE,ISNULL((Select top 1 StartTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id asc),getdate()),  
+  --ISNULL((Select top 1 EndTime from CallAssign ca where ca.ServiceBookingId=sb.Id order by Id desc),getdate())) ),0)  as ServiceHours, 
+   ISNULL((select Sum(ServiceHours) from CallAssign ca where ca.ServiceBookingId=sb.Id),0) as ServiceHours,
+  ISNULL((select top 1 Name from Location where Id=sb.LocationId),0) as Location,sb.ServiceBookingNo,          
+  ISNULL((select top 1 Name from UsersServiceProvider where Id=sb.TechnicianId),'') as TechnicianName,  
+  ISNULL((select Address from Users where Id=sb.UserId),'')As UserAddress  ,    
+  ISNULL((Select Name from Users where Id=sb.UserId ),'')as Name,  
+  ISNULL((Select Mobile from Users where Id=sb.UserId ),'')as Mobilee,    
+  ISNULL((Select Email from Users where Id=sb.UserId ),'')as Email    
+  from ServiceBooking sb    
+   where sb.SupervisorId=@supervisorid and sb.Status!=4  
+  order by sb.Id desc   
+  End
+
+
+**********************************************
+
+  alter table UsersAdmin
+  drop constraint FK__UsersAdmi__CityI__1367E606
+
+  ************************************************************************************
+  ***************************oct 23-2021 added by anu
+
+
+ALTER procedure [dbo].[spGetTopTwelveServicesWithPincode] --'683101'
+@pincode nvarchar(100)
+as
+Begin 
+declare @locationid int=(select top 1 l.Id from LocationArea la inner join Location l on la.LocationId=l.Id    
+where @pincode between la.FromPincode and la.ToPincode and l.Status=0 and la.Status=0)    
+select top 12 s.Id,@locationid as LocationId,s.Name,s.Code,s.ImagePath,s.Description,s.Rules,s.CategoryId,s.UserId,s.RateChart,  
+ISNULL(s.AdvanceAmount,0) as AdvanceAmount,
+--ISNULL((select top 1 SupervisorId from SupervisorLocationServiceMapping where ServiceId=s.Id and LocationId=@locationid),0) as SupervisorId, 
+ISNULL((select top 1 sl.SupervisorId from SupervisorLocationServiceMapping sl inner join UsersSupervisor us on us.Id=sl.SupervisorId where sl.ServiceId=s.Id and sl.LocationId=@locationid and us.Status=0 ),0) as SupervisorId,
+(select c.Name from category c where s.CategoryId =c.Id) as CategoryName    
+ from CityServiceMapping csm inner join 
+[Services] s on csm.ServiceId=s.Id 
+inner join Category  c 
+on s.CategoryId=c.Id
+
+where csm.CityId=@locationid  and s.Status=0 and c.Status=0 order by s.Code asc
+End 
+*********************************************
+
+ALTER procedure [dbo].[spGetAllServicesWithPincode] --'682002' 
+@pincode nvarchar(50)    
+as    
+Begin    
+declare @locationid int=(select top 1 l.Id from LocationArea la inner join Location l on la.LocationId=l.Id    
+where @pincode between la.FromPincode and la.ToPincode and l.Status=0 and la.Status=0)    
+select @locationid as LocationId,s.Id,s.Name,s.Code,s.ImagePath,s.Description,s.Rules,s.CategoryId,s.UserId,s.RateChart,  
+ISNULL(s.AdvanceAmount,0) as AdvanceAmount,
+ISNULL((select top 1 SupervisorId from SupervisorLocationServiceMapping ls inner join UsersSupervisor us on us.Id=SupervisorId  where ls.ServiceId=s.Id and ls.LocationId=@locationid and us.Status=0 ),0) as SupervisorId,   
+(select c.Name from category c where s.CategoryId =c.Id) as CategoryName    
+ from CityServiceMapping csm inner join     
+[Services] s on csm.ServiceId=s.Id where csm.CityId=@locationid  and s.Status=0  
+End
+
+*******************************
+ALTER procedure [dbo].[UpdateServiceBookingStatus]
+@Id int  
+ 
+as  
+begin try  
+begin
+Update ServiceBooking set Status=3,InvoiceDate=getdate(),InvoiceNo=((select max(InvoiceNo) from ServiceBooking)+1) where Id=@Id
+select @Id as Id,cast(@@ERROR as int) as Error  
+end
+end try  
+Begin Catch  
+select 0 as Id,cast(@@ERROR as int) as Error  
+end catch
+
+===========================24/1/22 by praveesh=======================
+
+ALTER proc [dbo].[spGetAllLocation]
+as
+begin
+select Id,Name,Status,Code,UserId,(select COUNT(*) from LocationArea where LocationId=ll.Id) as AreaCount, (select top 1 FromPincode from LocationArea la where la.LocationId=ll.Id and Status=0) as PincodeStarts
+from Location ll (nolock) where Status<>1
+order by Status,Name
+end
+=====================14/2/22 maria================
+ALTER procedure [dbo].[spGetAllCategories]
+As
+Begin
+select Id,Name,Status,SysTime,UserId,Description,ImagePath from Category (nolock)  where Status=0 
+
+End
+===========================================
+create procedure [dbo].[spGetAllCategoriesforDisplay]
+As
+Begin
+select Id,Name,Status,SysTime,UserId,Description,ImagePath from Category (nolock)  where Status!=1 
+
+End
+=====================14/2/22 maria===============
+=====================16/2/22 maria===============
+ALTER procedure [dbo].[spGetAllLocationServiceMappingDetails]
+as
+Begin
+select l.Id,l.Name,l.Code,l.UserId,l.Status,l.Systime,
+ServiceName=STUFF((SELECT ', ' + se.Name    
+           FROM [CityServiceMapping] csm   
+     inner join [Services] se on se.Id=csm.ServiceId
+           WHERE csm.CityId=l.Id and se.Status=0   
+          FOR XML PATH('')), 1, 2, '') from [Location] l where l.Status<>1
+End
+
+==========================================================
+ALTER procedure [dbo].[spGetAllServicesWithCityId] 
+@CityId int
+As
+Begin
+--select csm.ServiceId as Id,csm.Id as CityServiceMappingId,csm.Description,csm.RateChart,csm.Rules,csm.IsLive,csm.SupervisorId,s.Name,s.ImagePath from CityServiceMapping csm
+--full outer join Services s on s.Id=csm.ServiceId
+--where CityId=@CityId and s.Status=0
+--and csm.IsLive=1
+
+select csm.ServiceId as Id,csm.Id as CityServiceMappingId,csm.Description,csm.RateChart,csm.Rules,csm.IsLive,csm.SupervisorId,s.Name,s.ImagePath from ((CityServiceMapping csm
+full outer join Services s on s.Id=csm.ServiceId)INNER JOIN Category c ON c.Id = s.CategoryId)
+where CityId=@CityId and s.Status=0 and c.Status=0
+
+
+
+End
+================================================
+ALTER procedure [dbo].[spGetAllLocationServiceMappingDetails]
+as
+Begin
+select l.Id,l.Name,l.Code,l.UserId,l.Status,l.Systime,
+ServiceName=STUFF((SELECT ', ' + se.Name    
+           FROM (([CityServiceMapping] csm   
+     inner join [Services] se on se.Id=csm.ServiceId)INNER JOIN Category c ON c.Id = se.CategoryId)
+           WHERE csm.CityId=l.Id and se.Status=0 and c.Status=0  
+          FOR XML PATH('')), 1, 2, '') from [Location] l where l.Status<>1
+End
+=================================================
+create procedure [dbo].[spGetAllServicesforDisplay]  
+As  
+Begin  
+--select Id,Name,Code,ImagePath,Description,Rules,CategoryId,UserId,RateChart,Status from [Services] where Status!=1  
+select s.Id,s.Name,s.Code,s.ImagePath,s.Description,s.Rules,s.AdditionalRate,
+s.CategoryId,s.UserId,s.RateChart,s.Status,ISNULL(s.AdvanceAmount,0) as AdvanceAmount,c.Name as CategoryName 
+from [Services] s inner join Category  c 
+on s.CategoryId=c.Id where  
+s.Status=0  and c.Status=0
+End
+=================================================
+ALTER procedure [dbo].[spGetMastersCount]  
+as  
+Begin  
+Select (select Count(*) from [Category] where Status<>1) as CategoryCount ,  
+(select Count(*) from [Services] inner join Category on Services.CategoryId=Category.Id where Services.Status<>1 and Category.Status=0) as ServiceCount,  
+(select count(*) from [UsersAdmin] where Status<> 1) as UsersCount,  
+(select count(*) from [Location] where Status<>1) as LocationCount,  
+(select count(*) from [UsersSupervisor] where Status<>1 ) as SupervisorCount,  
+(select count(*)  from UsersServiceProvider usp   
+ inner join Location lo on lo.id=usp.CityId   
+ inner join UsersSupervisor us on us.Id=usp.SupervisorId  
+    where usp.Status !=1) as TechnicianCount,  
+( select count(distinct l.Id)  from [Location] l inner join   
+CityServiceMapping csm on csm.CityId=l.Id  
+where l.Status<>1) as CityServiceMappingCount,
+(select Count(*) from ServiceTimeSlots sts where sts.Status<>1) as TimeSlotCount,
+(select Count(*) from TechnicianStatus ts where Name<>'Started' and Name<>'Ended' and Status<>1) as StatusCount,
+(select Count(*) from AnnouncementGroup ag where Status<>1) as AnnouncementCount
+End
+=====================16/2/22 maria===============
+

@@ -1,0 +1,535 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F39648C4-648F-4F04-AB9F-8977FCF2F18C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InIT.API.GMMEP</RootNamespace>
+    <AssemblyName>InIT.API.GMMEP</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid, Version=9.23.2.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\SendGrid.9.23.2\lib\net40\SendGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StarkbankEcdsa, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b2e6337a5d77bfbc, processorArchitecture=MSIL">
+      <HintPath>..\packages\starkbank-ecdsa.1.3.1\lib\net40\StarkbankEcdsa.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="Models\Alterations.txt" />
+    <Content Include="Models\GMMEP.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GMMEP.edmx</DependentUpon>
+      <LastGenOutput>GMMEP.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\GMMEP.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GMMEP.edmx</DependentUpon>
+      <LastGenOutput>GMMEP.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Class\AdminUserRights.cs" />
+    <Compile Include="Class\Announcement.cs" />
+    <Compile Include="Class\AnnouncementGroup.cs" />
+    <Compile Include="Class\AppVersion.cs" />
+    <Compile Include="Class\AvailablePincode.cs" />
+    <Compile Include="Class\CallAssign.cs" />
+    <Compile Include="Class\Category.cs" />
+    <Compile Include="Class\CityServiceMaping.cs" />
+    <Compile Include="Class\CityWiseService.cs" />
+    <Compile Include="Class\Country.cs" />
+    <Compile Include="Class\InsertReturn.cs" />
+    <Compile Include="Class\ListOfId.cs" />
+    <Compile Include="Class\Location.cs" />
+    <Compile Include="Class\Pages.cs" />
+    <Compile Include="Class\Payments.cs" />
+    <Compile Include="Class\ServiceBooking.cs" />
+    <Compile Include="Class\ServiceProviderServiceMapping.cs" />
+    <Compile Include="Class\ServiceRateChartMapping.cs" />
+    <Compile Include="Class\Services.cs" />
+    <Compile Include="Class\ServiceTimeSlot.cs" />
+    <Compile Include="Class\spGetAllServicesForSupervisorWithLocationId_Result.cs" />
+    <Compile Include="Class\spGetAllSupervisorWithLocationId.cs" />
+    <Compile Include="Class\SupervisorLocationServiceMapping.cs" />
+    <Compile Include="Class\TechnicianStatus.cs" />
+    <Compile Include="Class\Users.cs" />
+    <Compile Include="Class\UsersAdmin.cs" />
+    <Compile Include="Class\UsersServiceProvider.cs" />
+    <Compile Include="Class\UsersSupervisor.cs" />
+    <Compile Include="Class\Utils.cs" />
+    <Compile Include="Controllers\AllCallController.cs" />
+    <Compile Include="Controllers\AnnouncementController.cs" />
+    <Compile Include="Controllers\AnnouncementVideoUploadControllerController.cs" />
+    <Compile Include="Controllers\AppVersionController.cs" />
+    <Compile Include="Controllers\AuthoriseController.cs" />
+    <Compile Include="Controllers\BookingDetailsController.cs" />
+    <Compile Include="Controllers\CallAssignController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CategoryDisplayController.cs" />
+    <Compile Include="Controllers\CityServiceMapingController.cs" />
+    <Compile Include="Controllers\CityServiceMapingRowController.cs" />
+    <Compile Include="Controllers\CountryController.cs" />
+    <Compile Include="Controllers\CategoryImageUploadController.cs" />
+    <Compile Include="Controllers\DeleteController.cs" />
+    <Compile Include="Controllers\LiveCallController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\PagesController.cs" />
+    <Compile Include="Controllers\PastCallController.cs" />
+    <Compile Include="Controllers\ServiceBookingController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\ServicesforDisplayController.cs" />
+    <Compile Include="Controllers\ServicesImageUploadController.cs" />
+    <Compile Include="Controllers\StartServiceController.cs" />
+    <Compile Include="Controllers\StopServiceController.cs" />
+    <Compile Include="Controllers\SupervisorBookingController.cs" />
+    <Compile Include="Controllers\SupervisorLocationServiceMappingController.cs" />
+    <Compile Include="Controllers\TechnicianStatusController.cs" />
+    <Compile Include="Controllers\TimeSlotController.cs" />
+    <Compile Include="Controllers\UserAnnouncementController.cs" />
+    <Compile Include="Controllers\UserRegisterController.cs" />
+    <Compile Include="Controllers\UsersAdminController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\UsersLoginController.cs" />
+    <Compile Include="Controllers\UsersServiceProviderController.cs" />
+    <Compile Include="Controllers\UsersSupervisorController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GMMEP.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GMMEP.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GMMEP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GMMEP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GMMEP.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spAdminUpdateServicebooking_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spDeleteData_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spDeleteServiceMapingWithCityId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spDeleteTechnicians_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spEndCallAssign_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllAnnouncementsWithType_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllAnnouncements_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllAnnouncementWithGroupId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllBillDetailsWithBookingId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllBookingDetailsWithSupervisorId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllBookingDetails_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllCallAssignDetailsWithServiceBookingId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllCallAssignForTechnicianId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllCallAssignWithTechnicianId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllCallReports_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllCategoriesforDisplay_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllCategories_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllCategoryWithPincode_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllCities_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllCityWithCountryId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllClosedReports_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllCountry_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllLiveBookingDetails_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllLocationServiceMappingDetails_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllLocation_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllPagesWithUserAdminId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllPages_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllPastBookingDetails_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllServicesforDisplay_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllServicesWithCityId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllServicesWithLocationId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllServicesWithPincode_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllServicesWithSupervisorId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllServicesWithUsersServiceProviderId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllServices_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllServiceTimeSlotsWithServiceId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllServiceTimeSlots_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllServiceWithServiceId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllSupervisorLocationServiceMappingWithSupervisorId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllSupervisorsWithCityIdAndServiceId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllSupervisorsWithCityId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllTechniciansListWithServices_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllTechnicianStatus_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllUsersAdmin_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllUsersServiceProviderDetails_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAllUsersSupervisor_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetAreaWithLocationId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetCityDetailsWithCityId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetMastersCount_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetServiceRateChartmappingWithServiceId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetStartCallAssign_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetTopTwelveServicesWithPincode_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spInsertAnnouncementGroup_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spInsertAnnouncements_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spInsertCallAssign_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spInsertCategory_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spInsertCityServiceMapingRowWise_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spInsertPages_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spInsertServiceBooking_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spInsertServices_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spInsertServiceTimeSlots_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spInsertTechnicianStatus_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spInsertUsersSupervisor_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spInsertUsers_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spLoginCheckWithOTP_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spResendVerificationOtp_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spRevokeServiceBookingStatus_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spUpdateAnnouncementVideoUrl_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spUpdateBillAmountWithServiceBookingId_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spUpdateServiceBookingAuthoriseStatus_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spUpdateServicebookingServiceStatusByAdmin_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spUpdateUsers_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spUserLoginCheck_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spUserLoginWithEmailOrMobile_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UpdateServiceBookingStatus_Result.cs">
+      <DependentUpon>GMMEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <EntityDeploy Include="Models\GMMEP.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GMMEP.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\GMMEP.edmx.diagram">
+      <DependentUpon>GMMEP.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\gmmep.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="assets\images\AnnouncementImages\" />
+    <Folder Include="assets\images\AnnouncementVideos\" />
+    <Folder Include="assets\images\CategoryImages\" />
+    <Folder Include="assets\images\ServicesImages\" />
+    <Folder Include="assets\images\StartImages\" />
+    <Folder Include="assets\images\StopImages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51842</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:51888</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

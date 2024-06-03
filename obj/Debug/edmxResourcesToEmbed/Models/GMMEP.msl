@@ -1,0 +1,1127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GMMEPModelStoreContainer" CdmEntityContainer="GmmepEntities">
+    <FunctionImportMapping FunctionImportName="spGetAllCities" FunctionName="GMMEPModel.Store.spGetAllCities">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllCities_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllCityWithCountryId" FunctionName="GMMEPModel.Store.spGetAllCityWithCountryId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllCityWithCountryId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllCountry" FunctionName="GMMEPModel.Store.spGetAllCountry">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllCountry_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SysTime" ColumnName="SysTime" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllPages" FunctionName="GMMEPModel.Store.spGetAllPages">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllPages_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ComponentName" ColumnName="ComponentName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllPagesWithUserAdminId" FunctionName="GMMEPModel.Store.spGetAllPagesWithUserAdminId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllPagesWithUserAdminId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllServices" FunctionName="GMMEPModel.Store.spGetAllServices">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllServices_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Rules" ColumnName="Rules" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RateChart" ColumnName="RateChart" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="AdvanceAmount" ColumnName="AdvanceAmount" />
+          <ScalarProperty Name="AdditionalRate" ColumnName="AdditionalRate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllServiceWithServiceId" FunctionName="GMMEPModel.Store.spGetAllServiceWithServiceId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllServiceWithServiceId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Rules" ColumnName="Rules" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RateChart" ColumnName="RateChart" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllSupervisorsWithCityId" FunctionName="GMMEPModel.Store.spGetAllSupervisorsWithCityId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllSupervisorsWithCityId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllUsersAdmin" FunctionName="GMMEPModel.Store.spGetAllUsersAdmin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllUsersAdmin_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllUsersSupervisor" FunctionName="GMMEPModel.Store.spGetAllUsersSupervisor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllUsersSupervisor_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsBill" ColumnName="IsBill" />
+          <ScalarProperty Name="IsAuthorise" ColumnName="IsAuthorise" />
+          <ScalarProperty Name="IsBooking" ColumnName="IsBooking" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spInsertCategory" FunctionName="GMMEPModel.Store.spInsertCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spInsertCategory_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spInsertCityServiceMapping" FunctionName="GMMEPModel.Store.spInsertCityServiceMapping" />
+    <FunctionImportMapping FunctionImportName="spInsertPages" FunctionName="GMMEPModel.Store.spInsertPages">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spInsertPages_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spInsertServices" FunctionName="GMMEPModel.Store.spInsertServices">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spInsertServices_Result" />
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllUsersServiceProviderDetails" FunctionName="GMMEPModel.Store.spGetAllUsersServiceProviderDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllUsersServiceProviderDetails_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+          <ScalarProperty Name="IsLive" ColumnName="IsLive" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Supervisor" ColumnName="Supervisor" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsBooking" ColumnName="IsBooking" />
+          <ScalarProperty Name="IsBill" ColumnName="IsBill" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllServicesWithUsersServiceProviderId" FunctionName="GMMEPModel.Store.spGetAllServicesWithUsersServiceProviderId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllServicesWithUsersServiceProviderId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spDeleteServiceMapingWithCityId" FunctionName="GMMEPModel.Store.spDeleteServiceMapingWithCityId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spDeleteServiceMapingWithCityId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spInsertCityServiceMapingRowWise" FunctionName="GMMEPModel.Store.spInsertCityServiceMapingRowWise">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spInsertCityServiceMapingRowWise_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spInsertUsers" FunctionName="GMMEPModel.Store.spInsertUsers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spInsertUsers_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spUserLoginCheck" FunctionName="GMMEPModel.Store.spUserLoginCheck">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spUserLoginCheck_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="IsBill" ColumnName="IsBill" />
+          <ScalarProperty Name="IsAuthorise" ColumnName="IsAuthorise" />
+          <ScalarProperty Name="IsBooking" ColumnName="IsBooking" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetCityDetailsWithCityId" FunctionName="GMMEPModel.Store.spGetCityDetailsWithCityId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetCityDetailsWithCityId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllLocation" FunctionName="GMMEPModel.Store.spGetAllLocation">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllLocation_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AreaCount" ColumnName="AreaCount" />
+          <ScalarProperty Name="PincodeStarts" ColumnName="PincodeStarts" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spInsertLocation" FunctionName="GMMEPModel.Store.spInsertLocation" />
+    <FunctionImportMapping FunctionImportName="spDeleteTechnicians" FunctionName="GMMEPModel.Store.spDeleteTechnicians">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spDeleteTechnicians_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spDeleteData" FunctionName="GMMEPModel.Store.spDeleteData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spDeleteData_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAreaWithLocationId" FunctionName="GMMEPModel.Store.spGetAreaWithLocationId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAreaWithLocationId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="FromPincode" ColumnName="FromPincode" />
+          <ScalarProperty Name="ToPincode" ColumnName="ToPincode" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spInsertServiceBooking" FunctionName="GMMEPModel.Store.spInsertServiceBooking">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spInsertServiceBooking_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spLoginCheckWithOTP" FunctionName="GMMEPModel.Store.spLoginCheckWithOTP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spLoginCheckWithOTP_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spResendVerificationOtp" FunctionName="GMMEPModel.Store.spResendVerificationOtp">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spResendVerificationOtp_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spUpdateUsers" FunctionName="GMMEPModel.Store.spUpdateUsers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spUpdateUsers_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spUserLoginWithEmailOrMobile" FunctionName="GMMEPModel.Store.spUserLoginWithEmailOrMobile">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spUserLoginWithEmailOrMobile_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spInsertServiceTimeSlots" FunctionName="GMMEPModel.Store.spInsertServiceTimeSlots">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spInsertServiceTimeSlots_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllServiceTimeSlotsWithServiceId" FunctionName="GMMEPModel.Store.spGetAllServiceTimeSlotsWithServiceId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllServiceTimeSlotsWithServiceId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Systime" ColumnName="Systime" />
+          <ScalarProperty Name="StartTimeString" ColumnName="StartTimeString" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllServiceTimeSlots" FunctionName="GMMEPModel.Store.spGetAllServiceTimeSlots">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllServiceTimeSlots_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllCategoryWithPincode" FunctionName="GMMEPModel.Store.spGetAllCategoryWithPincode">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllCategoryWithPincode_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllTechniciansListWithServices" FunctionName="GMMEPModel.Store.spGetAllTechniciansListWithServices">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllTechniciansListWithServices_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spInsertTechnicianStatus" FunctionName="GMMEPModel.Store.spInsertTechnicianStatus">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spInsertTechnicianStatus_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllTechnicianStatus" FunctionName="GMMEPModel.Store.spGetAllTechnicianStatus">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllTechnicianStatus_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllBookingDetails" FunctionName="GMMEPModel.Store.spGetAllBookingDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllBookingDetails_Result">
+          <ScalarProperty Name="ServiceBookingId" ColumnName="ServiceBookingId" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="SysTime" ColumnName="SysTime" />
+          <ScalarProperty Name="ServiceDate" ColumnName="ServiceDate" />
+          <ScalarProperty Name="ServiceTime" ColumnName="ServiceTime" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="SupervisorName" ColumnName="SupervisorName" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="TechnicianName" ColumnName="TechnicianName" />
+          <ScalarProperty Name="TechnicianId" ColumnName="TechnicianId" />
+          <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="ServiceStatus" ColumnName="ServiceStatus" />
+          <ScalarProperty Name="AdminRemarks" ColumnName="AdminRemarks" />
+          <ScalarProperty Name="SupervisorRemarks" ColumnName="SupervisorRemarks" />
+          <ScalarProperty Name="TechnicianRemarks" ColumnName="TechnicianRemarks" />
+          <ScalarProperty Name="AdditionalAmount" ColumnName="AdditionalAmount" />
+          <ScalarProperty Name="ServiceHours" ColumnName="ServiceHours" />
+          <ScalarProperty Name="ServiceBookingNo" ColumnName="ServiceBookingNo" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllServicesWithSupervisorId" FunctionName="GMMEPModel.Store.spGetAllServicesWithSupervisorId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllServicesWithSupervisorId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="RateChart" ColumnName="RateChart" />
+          <ScalarProperty Name="Rules" ColumnName="Rules" />
+          <ScalarProperty Name="IsLive" ColumnName="IsLive" />
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllCallAssignWithTechnicianId" FunctionName="GMMEPModel.Store.spGetAllCallAssignWithTechnicianId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllCallAssignWithTechnicianId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ServiceBookingId" ColumnName="ServiceBookingId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="TechnicianId" ColumnName="TechnicianId" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="TechnicianRemarks" ColumnName="TechnicianRemarks" />
+          <ScalarProperty Name="ServiceEndTime" ColumnName="ServiceEndTime" />
+          <ScalarProperty Name="AssignedTime" ColumnName="AssignedTime" />
+          <ScalarProperty Name="AssignedBy" ColumnName="AssignedBy" />
+          <ScalarProperty Name="StartLocation" ColumnName="StartLocation" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="ServicesStartTime" ColumnName="ServicesStartTime" />
+          <ScalarProperty Name="ServiceDate" ColumnName="ServiceDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="AdminRemarks" ColumnName="AdminRemarks" />
+          <ScalarProperty Name="UserRemarks" ColumnName="UserRemarks" />
+          <ScalarProperty Name="SupervisorRemarks" ColumnName="SupervisorRemarks" />
+          <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="ServiceTime" ColumnName="ServiceTime" />
+          <ScalarProperty Name="ServiceBookingNo" ColumnName="ServiceBookingNo" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="Invoicedate" ColumnName="Invoicedate" />
+          <ScalarProperty Name="ServiceBookingStatus" ColumnName="ServiceBookingStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spInsertCallAssign" FunctionName="GMMEPModel.Store.spInsertCallAssign">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spInsertCallAssign_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetServiceRateChartmappingWithServiceId" FunctionName="GMMEPModel.Store.spGetServiceRateChartmappingWithServiceId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetServiceRateChartmappingWithServiceId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="UptoHours" ColumnName="UptoHours" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="ServiceHours" ColumnName="ServiceHours" />
+          <ScalarProperty Name="AdditionalRate" ColumnName="AdditionalRate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllCallAssignForTechnicianId" FunctionName="GMMEPModel.Store.spGetAllCallAssignForTechnicianId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllCallAssignForTechnicianId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ServiceBookingId" ColumnName="ServiceBookingId" />
+          <ScalarProperty Name="TechnicianId" ColumnName="TechnicianId" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="TechnicianRemarks" ColumnName="TechnicianRemarks" />
+          <ScalarProperty Name="ServiceStartTime" ColumnName="ServiceStartTime" />
+          <ScalarProperty Name="ServiceEndTime" ColumnName="ServiceEndTime" />
+          <ScalarProperty Name="AssignedTime" ColumnName="AssignedTime" />
+          <ScalarProperty Name="AssignedBy" ColumnName="AssignedBy" />
+          <ScalarProperty Name="StartLocation" ColumnName="StartLocation" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SysTime" ColumnName="SysTime" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spAdminUpdateServicebooking" FunctionName="GMMEPModel.Store.spAdminUpdateServicebooking">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spAdminUpdateServicebooking_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllCallAssignDetailsWithServiceBookingId" FunctionName="GMMEPModel.Store.spGetAllCallAssignDetailsWithServiceBookingId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllCallAssignDetailsWithServiceBookingId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ServiceBookingId" ColumnName="ServiceBookingId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="TechnicianId" ColumnName="TechnicianId" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="TechnicianRemarks" ColumnName="TechnicianRemarks" />
+          <ScalarProperty Name="ServiceStartTime" ColumnName="ServiceStartTime" />
+          <ScalarProperty Name="ServiceEndTime" ColumnName="ServiceEndTime" />
+          <ScalarProperty Name="AssignedTime" ColumnName="AssignedTime" />
+          <ScalarProperty Name="StartLocation" ColumnName="StartLocation" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SysTime" ColumnName="SysTime" />
+          <ScalarProperty Name="TechnicianName" ColumnName="TechnicianName" />
+          <ScalarProperty Name="ServiceStatus" ColumnName="ServiceStatus" />
+          <ScalarProperty Name="ServiceHours" ColumnName="ServiceHours" />
+          <ScalarProperty Name="StartImageUrl" ColumnName="StartImageUrl" />
+          <ScalarProperty Name="StopImageUrl" ColumnName="StopImageUrl" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spInsertUsersAdmin" FunctionName="GMMEPModel.Store.spInsertUsersAdmin" />
+    <FunctionImportMapping FunctionImportName="spGetAllAnnouncements" FunctionName="GMMEPModel.Store.spGetAllAnnouncements">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllAnnouncements_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Heading" ColumnName="Heading" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
+          <ScalarProperty Name="VideoType" ColumnName="VideoType" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="LinkType" ColumnName="LinkType" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+          <ScalarProperty Name="AnnouncementGroupId" ColumnName="AnnouncementGroupId" />
+          <ScalarProperty Name="ThemeType" ColumnName="ThemeType" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="GroupOrderNo" ColumnName="GroupOrderNo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllAnnouncementWithGroupId" FunctionName="GMMEPModel.Store.spGetAllAnnouncementWithGroupId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllAnnouncementWithGroupId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Heading" ColumnName="Heading" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
+          <ScalarProperty Name="ThemeType" ColumnName="ThemeType" />
+          <ScalarProperty Name="VideoType" ColumnName="VideoType" />
+          <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+          <ScalarProperty Name="AnnouncementGroupId" ColumnName="AnnouncementGroupId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Systime" ColumnName="Systime" />
+          <ScalarProperty Name="LinkType" ColumnName="LinkType" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spInsertAnnouncementGroup" FunctionName="GMMEPModel.Store.spInsertAnnouncementGroup">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spInsertAnnouncementGroup_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spInsertAnnouncements" FunctionName="GMMEPModel.Store.spInsertAnnouncements">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spInsertAnnouncements_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spUpdateAnnouncementVideoUrl" FunctionName="GMMEPModel.Store.spUpdateAnnouncementVideoUrl">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spUpdateAnnouncementVideoUrl_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UpdateServiceBookingStatus" FunctionName="GMMEPModel.Store.UpdateServiceBookingStatus">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.UpdateServiceBookingStatus_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllBillDetailsWithBookingId" FunctionName="GMMEPModel.Store.spGetAllBillDetailsWithBookingId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllBillDetailsWithBookingId_Result">
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="ServiceDate" ColumnName="ServiceDate" />
+          <ScalarProperty Name="serviceTime" ColumnName="serviceTime" />
+          <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="OfferCode" ColumnName="OfferCode" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Systime" ColumnName="Systime" />
+          <ScalarProperty Name="TechnicianId" ColumnName="TechnicianId" />
+          <ScalarProperty Name="AdminRemarks" ColumnName="AdminRemarks" />
+          <ScalarProperty Name="SupervisorRemarks" ColumnName="SupervisorRemarks" />
+          <ScalarProperty Name="TechnicianRemarks" ColumnName="TechnicianRemarks" />
+          <ScalarProperty Name="ProposedAmount" ColumnName="ProposedAmount" />
+          <ScalarProperty Name="ServiceStatus" ColumnName="ServiceStatus" />
+          <ScalarProperty Name="ServiceBookingNo" ColumnName="ServiceBookingNo" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="ServiceHours" ColumnName="ServiceHours" />
+          <ScalarProperty Name="AdditionalAmount" ColumnName="AdditionalAmount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spInsertUsersServiceProvider" FunctionName="GMMEPModel.Store.spInsertUsersServiceProvider" />
+    <FunctionImportMapping FunctionImportName="spInsertUsersSupervisor" FunctionName="GMMEPModel.Store.spInsertUsersSupervisor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spInsertUsersSupervisor_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spUpdateServiceBookingAuthoriseStatus" FunctionName="GMMEPModel.Store.spUpdateServiceBookingAuthoriseStatus">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spUpdateServiceBookingAuthoriseStatus_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllCallReports" FunctionName="GMMEPModel.Store.spGetAllCallReports">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllCallReports_Result">
+          <ScalarProperty Name="ServiceBookingId" ColumnName="ServiceBookingId" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="SysTime" ColumnName="SysTime" />
+          <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+          <ScalarProperty Name="ServiceTime" ColumnName="ServiceTime" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="TechnicianId" ColumnName="TechnicianId" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="ServiceStatus" ColumnName="ServiceStatus" />
+          <ScalarProperty Name="AdminRemarks" ColumnName="AdminRemarks" />
+          <ScalarProperty Name="SupervisorRemarks" ColumnName="SupervisorRemarks" />
+          <ScalarProperty Name="ServiceStartDate" ColumnName="ServiceStartDate" />
+          <ScalarProperty Name="ServiceEndDate" ColumnName="ServiceEndDate" />
+          <ScalarProperty Name="AdditionalAmount" ColumnName="AdditionalAmount" />
+          <ScalarProperty Name="ServiceHours" ColumnName="ServiceHours" />
+          <ScalarProperty Name="SupervisorName" ColumnName="SupervisorName" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="TechnicianName" ColumnName="TechnicianName" />
+          <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ServiceBookingNo" ColumnName="ServiceBookingNo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllClosedReports" FunctionName="GMMEPModel.Store.spGetAllClosedReports">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllClosedReports_Result">
+          <ScalarProperty Name="ServiceBookingId" ColumnName="ServiceBookingId" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="SysTime" ColumnName="SysTime" />
+          <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+          <ScalarProperty Name="ServiceTime" ColumnName="ServiceTime" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="TechnicianId" ColumnName="TechnicianId" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="ServiceStatus" ColumnName="ServiceStatus" />
+          <ScalarProperty Name="AdminRemarks" ColumnName="AdminRemarks" />
+          <ScalarProperty Name="SupervisorRemarks" ColumnName="SupervisorRemarks" />
+          <ScalarProperty Name="ServiceStartDate" ColumnName="ServiceStartDate" />
+          <ScalarProperty Name="ServiceEndDate" ColumnName="ServiceEndDate" />
+          <ScalarProperty Name="AdditionalAmount" ColumnName="AdditionalAmount" />
+          <ScalarProperty Name="ServiceHours" ColumnName="ServiceHours" />
+          <ScalarProperty Name="SupervisorName" ColumnName="SupervisorName" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="TechnicianName" ColumnName="TechnicianName" />
+          <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ServiceBookingNo" ColumnName="ServiceBookingNo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spUpdateBillAmountWithServiceBookingId" FunctionName="GMMEPModel.Store.spUpdateBillAmountWithServiceBookingId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spUpdateBillAmountWithServiceBookingId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllServicesWithLocationId" FunctionName="GMMEPModel.Store.spGetAllServicesWithLocationId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllServicesWithLocationId_Result">
+          <ScalarProperty Name="CityServiceMappingId" ColumnName="CityServiceMappingId" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="IsLive" ColumnName="IsLive" />
+          <ScalarProperty Name="Rules" ColumnName="Rules" />
+          <ScalarProperty Name="RateChart" ColumnName="RateChart" />
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="ServiceDescription" ColumnName="ServiceDescription" />
+          <ScalarProperty Name="ServiceRules" ColumnName="ServiceRules" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AdvanceAmount" ColumnName="AdvanceAmount" />
+          <ScalarProperty Name="AdditionalRate" ColumnName="AdditionalRate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllServicesForSupervisorWithLocationId" FunctionName="GMMEPModel.Store.spGetAllServicesForSupervisorWithLocationId" />
+    <FunctionImportMapping FunctionImportName="spGetAllSupervisorLocationServiceMappingWithSupervisorId" FunctionName="GMMEPModel.Store.spGetAllSupervisorLocationServiceMappingWithSupervisorId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllSupervisorLocationServiceMappingWithSupervisorId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="CityServiceMappingId" ColumnName="CityServiceMappingId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spRevokeServiceBookingStatus" FunctionName="GMMEPModel.Store.spRevokeServiceBookingStatus">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spRevokeServiceBookingStatus_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllSupervisorWithLocationId" FunctionName="GMMEPModel.Store.spGetAllSupervisorWithLocationId" />
+    <FunctionImportMapping FunctionImportName="spGetAllLiveBookingDetails" FunctionName="GMMEPModel.Store.spGetAllLiveBookingDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllLiveBookingDetails_Result">
+          <ScalarProperty Name="ServiceBookingId" ColumnName="ServiceBookingId" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="SysTime" ColumnName="SysTime" />
+          <ScalarProperty Name="ServiceDate" ColumnName="ServiceDate" />
+          <ScalarProperty Name="ServiceTime" ColumnName="ServiceTime" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="TechnicianId" ColumnName="TechnicianId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="ServiceStatus" ColumnName="ServiceStatus" />
+          <ScalarProperty Name="AdminRemarks" ColumnName="AdminRemarks" />
+          <ScalarProperty Name="SupervisorRemarks" ColumnName="SupervisorRemarks" />
+          <ScalarProperty Name="TechnicianRemarks" ColumnName="TechnicianRemarks" />
+          <ScalarProperty Name="AdditionalAmount" ColumnName="AdditionalAmount" />
+          <ScalarProperty Name="ServiceHours" ColumnName="ServiceHours" />
+          <ScalarProperty Name="SupervisorName" ColumnName="SupervisorName" />
+          <ScalarProperty Name="ServiceBookingNo" ColumnName="ServiceBookingNo" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="TechnicianName" ColumnName="TechnicianName" />
+          <ScalarProperty Name="TechnicianMobile" ColumnName="TechnicianMobile" />
+          <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllPastBookingDetails" FunctionName="GMMEPModel.Store.spGetAllPastBookingDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllPastBookingDetails_Result">
+          <ScalarProperty Name="ServiceBookingId" ColumnName="ServiceBookingId" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="SysTime" ColumnName="SysTime" />
+          <ScalarProperty Name="ServiceDate" ColumnName="ServiceDate" />
+          <ScalarProperty Name="ServiceTime" ColumnName="ServiceTime" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="TechnicianId" ColumnName="TechnicianId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="ServiceStatus" ColumnName="ServiceStatus" />
+          <ScalarProperty Name="AdminRemarks" ColumnName="AdminRemarks" />
+          <ScalarProperty Name="SupervisorRemarks" ColumnName="SupervisorRemarks" />
+          <ScalarProperty Name="TechnicianRemarks" ColumnName="TechnicianRemarks" />
+          <ScalarProperty Name="AdditionalAmount" ColumnName="AdditionalAmount" />
+          <ScalarProperty Name="ServiceHours" ColumnName="ServiceHours" />
+          <ScalarProperty Name="SupervisorName" ColumnName="SupervisorName" />
+          <ScalarProperty Name="ServiceBookingNo" ColumnName="ServiceBookingNo" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="TechnicianName" ColumnName="TechnicianName" />
+          <ScalarProperty Name="TechnicianMobile" ColumnName="TechnicianMobile" />
+          <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEndCallAssign" FunctionName="GMMEPModel.Store.spEndCallAssign">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spEndCallAssign_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetStartCallAssign" FunctionName="GMMEPModel.Store.spGetStartCallAssign">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetStartCallAssign_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllSupervisorsWithCityIdAndServiceId" FunctionName="GMMEPModel.Store.spGetAllSupervisorsWithCityIdAndServiceId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllSupervisorsWithCityIdAndServiceId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllAnnouncementsWithType" FunctionName="GMMEPModel.Store.spGetAllAnnouncementsWithType">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllAnnouncementsWithType_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Systime" ColumnName="Systime" />
+          <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+          <ScalarProperty Name="ThemeType" ColumnName="ThemeType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spUpdateServicebookingServiceStatusByAdmin" FunctionName="GMMEPModel.Store.spUpdateServicebookingServiceStatusByAdmin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spUpdateServicebookingServiceStatusByAdmin_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllBookingDetailsWithSupervisorId" FunctionName="GMMEPModel.Store.spGetAllBookingDetailsWithSupervisorId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllBookingDetailsWithSupervisorId_Result">
+          <ScalarProperty Name="ServiceBookingId" ColumnName="ServiceBookingId" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="SysTime" ColumnName="SysTime" />
+          <ScalarProperty Name="ServiceDate" ColumnName="ServiceDate" />
+          <ScalarProperty Name="ServiceTime" ColumnName="ServiceTime" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="TechnicianId" ColumnName="TechnicianId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="ServiceStatus" ColumnName="ServiceStatus" />
+          <ScalarProperty Name="AdminRemarks" ColumnName="AdminRemarks" />
+          <ScalarProperty Name="SupervisorRemarks" ColumnName="SupervisorRemarks" />
+          <ScalarProperty Name="TechnicianRemarks" ColumnName="TechnicianRemarks" />
+          <ScalarProperty Name="SupervisorName" ColumnName="SupervisorName" />
+          <ScalarProperty Name="AdditionalAmount" ColumnName="AdditionalAmount" />
+          <ScalarProperty Name="ServiceHours" ColumnName="ServiceHours" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="ServiceBookingNo" ColumnName="ServiceBookingNo" />
+          <ScalarProperty Name="TechnicianName" ColumnName="TechnicianName" />
+          <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobilee" ColumnName="Mobilee" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllServicesWithPincode" FunctionName="GMMEPModel.Store.spGetAllServicesWithPincode">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllServicesWithPincode_Result">
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Rules" ColumnName="Rules" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RateChart" ColumnName="RateChart" />
+          <ScalarProperty Name="AdvanceAmount" ColumnName="AdvanceAmount" />
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetTopTwelveServicesWithPincode" FunctionName="GMMEPModel.Store.spGetTopTwelveServicesWithPincode">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetTopTwelveServicesWithPincode_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Rules" ColumnName="Rules" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RateChart" ColumnName="RateChart" />
+          <ScalarProperty Name="AdvanceAmount" ColumnName="AdvanceAmount" />
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllCategories" FunctionName="GMMEPModel.Store.spGetAllCategories">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllCategories_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SysTime" ColumnName="SysTime" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllCategoriesforDisplay" FunctionName="GMMEPModel.Store.spGetAllCategoriesforDisplay">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllCategoriesforDisplay_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SysTime" ColumnName="SysTime" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllServicesWithCityId" FunctionName="GMMEPModel.Store.spGetAllServicesWithCityId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllServicesWithCityId_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CityServiceMappingId" ColumnName="CityServiceMappingId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="RateChart" ColumnName="RateChart" />
+          <ScalarProperty Name="Rules" ColumnName="Rules" />
+          <ScalarProperty Name="IsLive" ColumnName="IsLive" />
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllLocationServiceMappingDetails" FunctionName="GMMEPModel.Store.spGetAllLocationServiceMappingDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllLocationServiceMappingDetails_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Systime" ColumnName="Systime" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllServicesforDisplay" FunctionName="GMMEPModel.Store.spGetAllServicesforDisplay">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetAllServicesforDisplay_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Rules" ColumnName="Rules" />
+          <ScalarProperty Name="AdditionalRate" ColumnName="AdditionalRate" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RateChart" ColumnName="RateChart" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="AdvanceAmount" ColumnName="AdvanceAmount" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetMastersCount" FunctionName="GMMEPModel.Store.spGetMastersCount">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GMMEPModel.spGetMastersCount_Result">
+          <ScalarProperty Name="CategoryCount" ColumnName="CategoryCount" />
+          <ScalarProperty Name="ServiceCount" ColumnName="ServiceCount" />
+          <ScalarProperty Name="UsersCount" ColumnName="UsersCount" />
+          <ScalarProperty Name="LocationCount" ColumnName="LocationCount" />
+          <ScalarProperty Name="SupervisorCount" ColumnName="SupervisorCount" />
+          <ScalarProperty Name="TechnicianCount" ColumnName="TechnicianCount" />
+          <ScalarProperty Name="CityServiceMappingCount" ColumnName="CityServiceMappingCount" />
+          <ScalarProperty Name="TimeSlotCount" ColumnName="TimeSlotCount" />
+          <ScalarProperty Name="StatusCount" ColumnName="StatusCount" />
+          <ScalarProperty Name="AnnouncementCount" ColumnName="AnnouncementCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

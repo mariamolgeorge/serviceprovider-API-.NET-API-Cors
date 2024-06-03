@@ -1,0 +1,1174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GMMEPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="GmmepEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="spGetAllCities" ReturnType="Collection(GMMEPModel.spGetAllCities_Result)" />
+    <FunctionImport Name="spGetAllCityWithCountryId" ReturnType="Collection(GMMEPModel.spGetAllCityWithCountryId_Result)">
+      <Parameter Name="countryid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllCountry" ReturnType="Collection(GMMEPModel.spGetAllCountry_Result)" />
+    <FunctionImport Name="spGetAllPages" ReturnType="Collection(GMMEPModel.spGetAllPages_Result)" />
+    <FunctionImport Name="spGetAllPagesWithUserAdminId" ReturnType="Collection(GMMEPModel.spGetAllPagesWithUserAdminId_Result)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllServices" ReturnType="Collection(GMMEPModel.spGetAllServices_Result)" />
+    <FunctionImport Name="spGetAllServiceWithServiceId" ReturnType="Collection(GMMEPModel.spGetAllServiceWithServiceId_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllSupervisorsWithCityId" ReturnType="Collection(GMMEPModel.spGetAllSupervisorsWithCityId_Result)">
+      <Parameter Name="CityId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllUsersAdmin" ReturnType="Collection(GMMEPModel.spGetAllUsersAdmin_Result)" />
+    <FunctionImport Name="spGetAllUsersSupervisor" ReturnType="Collection(GMMEPModel.spGetAllUsersSupervisor_Result)" />
+    <FunctionImport Name="spInsertCategory" ReturnType="Collection(GMMEPModel.spInsertCategory_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="ImagePath" Mode="In" Type="String" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="status" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertCityServiceMapping">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertPages" ReturnType="Collection(GMMEPModel.spInsertPages_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="ComponentName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertServices" ReturnType="Collection(GMMEPModel.spInsertServices_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="ImagePath" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="Rules" Mode="In" Type="String" />
+      <Parameter Name="CategoryId" Mode="In" Type="Int32" />
+      <Parameter Name="status" Mode="In" Type="Int32" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="advanceamount" Mode="In" Type="Double" />
+      <Parameter Name="RateChart" Mode="In" Type="String" />
+      <Parameter Name="additionalrate" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllUsersServiceProviderDetails" ReturnType="Collection(GMMEPModel.spGetAllUsersServiceProviderDetails_Result)" />
+    <FunctionImport Name="spGetAllServicesWithUsersServiceProviderId" ReturnType="Collection(GMMEPModel.spGetAllServicesWithUsersServiceProviderId_Result)">
+      <Parameter Name="UsersServiceProviderId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spDeleteServiceMapingWithCityId" ReturnType="Collection(GMMEPModel.spDeleteServiceMapingWithCityId_Result)">
+      <Parameter Name="CityId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertCityServiceMapingRowWise" ReturnType="Collection(GMMEPModel.spInsertCityServiceMapingRowWise_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="CityId" Mode="In" Type="Int32" />
+      <Parameter Name="ServiceId" Mode="In" Type="Int32" />
+      <Parameter Name="IsLive" Mode="In" Type="Int32" />
+      <Parameter Name="Rules" Mode="In" Type="String" />
+      <Parameter Name="RateChart" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="SupervisorId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertUsers" ReturnType="Collection(GMMEPModel.spInsertUsers_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Mobile" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+      <Parameter Name="CityId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spUserLoginCheck" ReturnType="Collection(GMMEPModel.spUserLoginCheck_Result)">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetCityDetailsWithCityId" ReturnType="Collection(GMMEPModel.spGetCityDetailsWithCityId_Result)">
+      <Parameter Name="CityId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllLocation" ReturnType="Collection(GMMEPModel.spGetAllLocation_Result)" />
+    <FunctionImport Name="spInsertLocation">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="userId" Mode="In" Type="Int32" />
+      <Parameter Name="status" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spDeleteTechnicians" ReturnType="Collection(GMMEPModel.spDeleteTechnicians_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spDeleteData" ReturnType="Collection(GMMEPModel.spDeleteData_Result)">
+      <Parameter Name="TableName" Mode="In" Type="String" />
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAreaWithLocationId" ReturnType="Collection(GMMEPModel.spGetAreaWithLocationId_Result)">
+      <Parameter Name="LocationId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertServiceBooking" ReturnType="Collection(GMMEPModel.spInsertServiceBooking_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="serviceid" Mode="In" Type="Int32" />
+      <Parameter Name="servicename" Mode="In" Type="String" />
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="mobile" Mode="In" Type="String" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="locationid" Mode="In" Type="Int32" />
+      <Parameter Name="latitude" Mode="In" Type="String" />
+      <Parameter Name="longitude" Mode="In" Type="String" />
+      <Parameter Name="paymenttype" Mode="In" Type="Int32" />
+      <Parameter Name="amount" Mode="In" Type="Double" />
+      <Parameter Name="servicedate" Mode="In" Type="DateTime" />
+      <Parameter Name="servicetime" Mode="In" Type="DateTime" />
+      <Parameter Name="servicetype" Mode="In" Type="Int32" />
+      <Parameter Name="remarks" Mode="In" Type="String" />
+      <Parameter Name="offercode" Mode="In" Type="String" />
+      <Parameter Name="discount" Mode="In" Type="Double" />
+      <Parameter Name="supervisorid" Mode="In" Type="Int32" />
+      <Parameter Name="paymentcode" Mode="In" Type="String" />
+      <Parameter Name="adminremarks" Mode="In" Type="String" />
+      <Parameter Name="supervisorremarks" Mode="In" Type="String" />
+      <Parameter Name="technicianremarks" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spLoginCheckWithOTP" ReturnType="Collection(GMMEPModel.spLoginCheckWithOTP_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="otp" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spResendVerificationOtp" ReturnType="Collection(GMMEPModel.spResendVerificationOtp_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spUpdateUsers" ReturnType="Collection(GMMEPModel.spUpdateUsers_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="mobile" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="pincode" Mode="In" Type="String" />
+      <Parameter Name="latitude" Mode="In" Type="String" />
+      <Parameter Name="longitude" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spUserLoginWithEmailOrMobile" ReturnType="Collection(GMMEPModel.spUserLoginWithEmailOrMobile_Result)">
+      <Parameter Name="mobile" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertServiceTimeSlots" ReturnType="Collection(GMMEPModel.spInsertServiceTimeSlots_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="starttime" Mode="In" Type="DateTime" />
+      <Parameter Name="endtime" Mode="In" Type="DateTime" />
+      <Parameter Name="locationid" Mode="In" Type="Int32" />
+      <Parameter Name="serviceid" Mode="In" Type="Int32" />
+      <Parameter Name="status" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllServiceTimeSlotsWithServiceId" ReturnType="Collection(GMMEPModel.spGetAllServiceTimeSlotsWithServiceId_Result)">
+      <Parameter Name="serviceid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllServiceTimeSlots" ReturnType="Collection(GMMEPModel.spGetAllServiceTimeSlots_Result)" />
+    <FunctionImport Name="spGetAllCategoryWithPincode" ReturnType="Collection(GMMEPModel.spGetAllCategoryWithPincode_Result)">
+      <Parameter Name="pincode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllTechniciansListWithServices" ReturnType="Collection(GMMEPModel.spGetAllTechniciansListWithServices_Result)" />
+    <FunctionImport Name="spInsertTechnicianStatus" ReturnType="Collection(GMMEPModel.spInsertTechnicianStatus_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllTechnicianStatus" ReturnType="Collection(GMMEPModel.spGetAllTechnicianStatus_Result)" />
+    <FunctionImport Name="spGetAllBookingDetails" ReturnType="Collection(GMMEPModel.spGetAllBookingDetails_Result)" />
+    <FunctionImport Name="spGetAllServicesWithSupervisorId" ReturnType="Collection(GMMEPModel.spGetAllServicesWithSupervisorId_Result)">
+      <Parameter Name="SupervisorId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllCallAssignWithTechnicianId" ReturnType="Collection(GMMEPModel.spGetAllCallAssignWithTechnicianId_Result)">
+      <Parameter Name="technicianid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertCallAssign" ReturnType="Collection(GMMEPModel.spInsertCallAssign_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="customerid" Mode="In" Type="Int32" />
+      <Parameter Name="technicianid" Mode="In" Type="Int32" />
+      <Parameter Name="assignedtime" Mode="In" Type="DateTime" />
+      <Parameter Name="assignedby" Mode="In" Type="Int32" />
+      <Parameter Name="servicebookingid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetServiceRateChartmappingWithServiceId" ReturnType="Collection(GMMEPModel.spGetServiceRateChartmappingWithServiceId_Result)">
+      <Parameter Name="serviceid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllCallAssignForTechnicianId" ReturnType="Collection(GMMEPModel.spGetAllCallAssignForTechnicianId_Result)">
+      <Parameter Name="techncianid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spAdminUpdateServicebooking" ReturnType="Collection(GMMEPModel.spAdminUpdateServicebooking_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="AdminRemarks" Mode="In" Type="String" />
+      <Parameter Name="supervisorremarks" Mode="In" Type="String" />
+      <Parameter Name="servicedate" Mode="In" Type="DateTime" />
+      <Parameter Name="servicetime" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllCallAssignDetailsWithServiceBookingId" ReturnType="Collection(GMMEPModel.spGetAllCallAssignDetailsWithServiceBookingId_Result)">
+      <Parameter Name="bookingid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertUsersAdmin">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Mobile" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+      <Parameter Name="CityId" Mode="In" Type="Int32" />
+      <Parameter Name="status" Mode="In" Type="Int32" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllAnnouncements" ReturnType="Collection(GMMEPModel.spGetAllAnnouncements_Result)" />
+    <FunctionImport Name="spGetAllAnnouncementWithGroupId" ReturnType="Collection(GMMEPModel.spGetAllAnnouncementWithGroupId_Result)">
+      <Parameter Name="groupid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertAnnouncementGroup" ReturnType="Collection(GMMEPModel.spInsertAnnouncementGroup_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="type" Mode="In" Type="Int32" />
+      <Parameter Name="status" Mode="In" Type="Int32" />
+      <Parameter Name="orderno" Mode="In" Type="Int32" />
+      <Parameter Name="themetype" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertAnnouncements" ReturnType="Collection(GMMEPModel.spInsertAnnouncements_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="type" Mode="In" Type="Int32" />
+      <Parameter Name="heading" Mode="In" Type="String" />
+      <Parameter Name="description" Mode="In" Type="String" />
+      <Parameter Name="date" Mode="In" Type="DateTime" />
+      <Parameter Name="imageurl" Mode="In" Type="String" />
+      <Parameter Name="videourl" Mode="In" Type="String" />
+      <Parameter Name="videotype" Mode="In" Type="Int32" />
+      <Parameter Name="status" Mode="In" Type="Int32" />
+      <Parameter Name="orderno" Mode="In" Type="Int32" />
+      <Parameter Name="groupid" Mode="In" Type="Int32" />
+      <Parameter Name="themetype" Mode="In" Type="Int32" />
+      <Parameter Name="linktype" Mode="In" Type="Int32" />
+      <Parameter Name="link" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spUpdateAnnouncementVideoUrl" ReturnType="Collection(GMMEPModel.spUpdateAnnouncementVideoUrl_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateServiceBookingStatus" ReturnType="Collection(GMMEPModel.UpdateServiceBookingStatus_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllBillDetailsWithBookingId" ReturnType="Collection(GMMEPModel.spGetAllBillDetailsWithBookingId_Result)">
+      <Parameter Name="bookingid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertUsersServiceProvider">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Mobile" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+      <Parameter Name="CityId" Mode="In" Type="Int32" />
+      <Parameter Name="SupervisorId" Mode="In" Type="Int32" />
+      <Parameter Name="IsLive" Mode="In" Type="Int32" />
+      <Parameter Name="status" Mode="In" Type="Int32" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="isbill" Mode="In" Type="Int32" />
+      <Parameter Name="isbooking" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertUsersSupervisor" ReturnType="Collection(GMMEPModel.spInsertUsersSupervisor_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Mobile" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+      <Parameter Name="CityId" Mode="In" Type="Int32" />
+      <Parameter Name="status" Mode="In" Type="Int32" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="serviceid" Mode="In" Type="Int32" />
+      <Parameter Name="isbill" Mode="In" Type="Int32" />
+      <Parameter Name="isbooking" Mode="In" Type="Int32" />
+      <Parameter Name="isauthorise" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spUpdateServiceBookingAuthoriseStatus" ReturnType="Collection(GMMEPModel.spUpdateServiceBookingAuthoriseStatus_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllCallReports" ReturnType="Collection(GMMEPModel.spGetAllCallReports_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="DateTime" />
+      <Parameter Name="todate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllClosedReports" ReturnType="Collection(GMMEPModel.spGetAllClosedReports_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="DateTime" />
+      <Parameter Name="todate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="spUpdateBillAmountWithServiceBookingId" ReturnType="Collection(GMMEPModel.spUpdateBillAmountWithServiceBookingId_Result)">
+      <Parameter Name="amount" Mode="In" Type="Double" />
+      <Parameter Name="bookingid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllServicesWithLocationId" ReturnType="Collection(GMMEPModel.spGetAllServicesWithLocationId_Result)">
+      <Parameter Name="locationid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllServicesForSupervisorWithLocationId" />
+    <FunctionImport Name="spGetAllSupervisorLocationServiceMappingWithSupervisorId" ReturnType="Collection(GMMEPModel.spGetAllSupervisorLocationServiceMappingWithSupervisorId_Result)">
+      <Parameter Name="supervisorid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spRevokeServiceBookingStatus" ReturnType="Collection(GMMEPModel.spRevokeServiceBookingStatus_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllSupervisorWithLocationId">
+      <Parameter Name="locationid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllLiveBookingDetails" ReturnType="Collection(GMMEPModel.spGetAllLiveBookingDetails_Result)">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllPastBookingDetails" ReturnType="Collection(GMMEPModel.spGetAllPastBookingDetails_Result)">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spEndCallAssign" ReturnType="Collection(GMMEPModel.spEndCallAssign_Result)">
+      <Parameter Name="callassignid" Mode="In" Type="Int32" />
+      <Parameter Name="remarks" Mode="In" Type="String" />
+      <Parameter Name="amount" Mode="In" Type="Double" />
+      <Parameter Name="status" Mode="In" Type="Int32" />
+      <Parameter Name="stopimageurl" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetStartCallAssign" ReturnType="Collection(GMMEPModel.spGetStartCallAssign_Result)">
+      <Parameter Name="callassignid" Mode="In" Type="Int32" />
+      <Parameter Name="startlocation" Mode="In" Type="String" />
+      <Parameter Name="startimageurl" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllSupervisorsWithCityIdAndServiceId" ReturnType="Collection(GMMEPModel.spGetAllSupervisorsWithCityIdAndServiceId_Result)">
+      <Parameter Name="LocationId" Mode="In" Type="Int32" />
+      <Parameter Name="ServiceId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllAnnouncementsWithType" ReturnType="Collection(GMMEPModel.spGetAllAnnouncementsWithType_Result)">
+      <Parameter Name="type" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spUpdateServicebookingServiceStatusByAdmin" ReturnType="Collection(GMMEPModel.spUpdateServicebookingServiceStatusByAdmin_Result)">
+      <Parameter Name="servicebookingid" Mode="In" Type="Int32" />
+      <Parameter Name="status" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllBookingDetailsWithSupervisorId" ReturnType="Collection(GMMEPModel.spGetAllBookingDetailsWithSupervisorId_Result)">
+      <Parameter Name="supervisorid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllServicesWithPincode" ReturnType="Collection(GMMEPModel.spGetAllServicesWithPincode_Result)">
+      <Parameter Name="pincode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetTopTwelveServicesWithPincode" ReturnType="Collection(GMMEPModel.spGetTopTwelveServicesWithPincode_Result)">
+      <Parameter Name="pincode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllCategories" ReturnType="Collection(GMMEPModel.spGetAllCategories_Result)" />
+    <FunctionImport Name="spGetAllCategoriesforDisplay" ReturnType="Collection(GMMEPModel.spGetAllCategoriesforDisplay_Result)" />
+    <FunctionImport Name="spGetAllServicesWithCityId" ReturnType="Collection(GMMEPModel.spGetAllServicesWithCityId_Result)">
+      <Parameter Name="CityId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllLocationServiceMappingDetails" ReturnType="Collection(GMMEPModel.spGetAllLocationServiceMappingDetails_Result)" />
+    <FunctionImport Name="spGetAllServicesforDisplay" ReturnType="Collection(GMMEPModel.spGetAllServicesforDisplay_Result)" />
+    <FunctionImport Name="spGetMastersCount" ReturnType="Collection(GMMEPModel.spGetMastersCount_Result)" />
+  </EntityContainer>
+  <ComplexType Name="spGetAllCities_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ImagePath" Nullable="true" />
+    <Property Type="Int32" Name="CountryId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllCityWithCountryId_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ImagePath" Nullable="true" />
+    <Property Type="Int32" Name="CountryId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllCountry_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ImagePath" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="DateTime" Name="SysTime" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="spGetAllPages_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ComponentName" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spGetAllPagesWithUserAdminId_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spGetAllServices_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ImagePath" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="String" Name="Rules" Nullable="true" />
+    <Property Type="Int32" Name="CategoryId" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="RateChart" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="String" Name="CategoryName" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="AdvanceAmount" Nullable="false" />
+    <Property Type="Double" Name="AdditionalRate" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllServiceWithServiceId_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ImagePath" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="String" Name="Rules" Nullable="true" />
+    <Property Type="Int32" Name="CategoryId" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="RateChart" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllSupervisorsWithCityId_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Mobile" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="CityId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllUsersAdmin_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Mobile" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="CityId" Nullable="true" />
+    <Property Type="Int32" Name="UserType" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="String" Name="Location" Nullable="true" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="spGetAllUsersSupervisor_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Mobile" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="CityId" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="15" />
+    <Property Type="Int32" Name="IsBill" Nullable="true" />
+    <Property Type="Int32" Name="IsAuthorise" Nullable="true" />
+    <Property Type="Int32" Name="IsBooking" Nullable="true" />
+    <Property Type="String" Name="ServiceName" Nullable="true" />
+    <Property Type="String" Name="LocationName" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spInsertCategory_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spInsertPages_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spInsertServices_Result" />
+  <ComplexType Name="spGetAllUsersServiceProviderDetails_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Mobile" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="CityId" Nullable="true" />
+    <Property Type="Int32" Name="SupervisorId" Nullable="true" />
+    <Property Type="Int32" Name="IsLive" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="String" Name="Location" Nullable="true" />
+    <Property Type="String" Name="Supervisor" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ServiceName" Nullable="true" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="15" />
+    <Property Type="Int32" Name="IsBooking" Nullable="true" />
+    <Property Type="Int32" Name="IsBill" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllServicesWithUsersServiceProviderId_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spDeleteServiceMapingWithCityId_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spInsertCityServiceMapingRowWise_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spInsertUsers_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spUserLoginCheck_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="String" Name="Mobile" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="CityId" Nullable="true" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="15" />
+    <Property Type="Int32" Name="UserType" Nullable="true" />
+    <Property Type="Int32" Name="IsBill" Nullable="false" />
+    <Property Type="Int32" Name="IsAuthorise" Nullable="false" />
+    <Property Type="Int32" Name="IsBooking" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="spGetCityDetailsWithCityId_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spGetAllLocation_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="Int32" Name="AreaCount" Nullable="true" />
+    <Property Type="String" Name="PincodeStarts" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spDeleteTechnicians_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spDeleteData_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAreaWithLocationId_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="AreaName" Nullable="true" />
+    <Property Type="Int32" Name="LocationId" Nullable="true" />
+    <Property Type="String" Name="FromPincode" Nullable="true" />
+    <Property Type="String" Name="ToPincode" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="LocationName" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spInsertServiceBooking_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spLoginCheckWithOTP_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Mobile" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Address" Nullable="false" />
+    <Property Type="String" Name="Pincode" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="UserType" Nullable="true" />
+    <Property Type="String" Name="Latitude" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Longitude" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spResendVerificationOtp_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Mobile" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spUpdateUsers_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spUserLoginWithEmailOrMobile_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spInsertServiceTimeSlots_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllServiceTimeSlotsWithServiceId_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="DateTime" Name="StartTime" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="EndTime" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="LocationId" Nullable="true" />
+    <Property Type="Int32" Name="ServiceId" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="DateTime" Name="Systime" Nullable="true" Precision="23" />
+    <Property Type="String" Name="StartTimeString" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="spGetAllServiceTimeSlots_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Count" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllCategoryWithPincode_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spGetAllTechniciansListWithServices_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Mobile" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="SupervisorId" Nullable="true" />
+    <Property Type="Int32" Name="LocationId" Nullable="true" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="ServiceId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spInsertTechnicianStatus_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllTechnicianStatus_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllBookingDetails_Result">
+    <Property Type="Int32" Name="ServiceBookingId" Nullable="false" />
+    <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="SysTime" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ServiceDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ServiceTime" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="PaymentType" Nullable="true" />
+    <Property Type="Int32" Name="SupervisorId" Nullable="true" />
+    <Property Type="Double" Name="Amount" Nullable="true" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="LocationId" Nullable="true" />
+    <Property Type="Int32" Name="ServiceId" Nullable="true" />
+    <Property Type="String" Name="UserAddress" Nullable="false" />
+    <Property Type="String" Name="Mobile" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="SupervisorName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Location" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="Longitude" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Latitude" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="TechnicianName" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="TechnicianId" Nullable="false" />
+    <Property Type="Int32" Name="ServiceType" Nullable="true" />
+    <Property Type="String" Name="Remarks" Nullable="false" />
+    <Property Type="Int32" Name="ServiceStatus" Nullable="false" />
+    <Property Type="String" Name="AdminRemarks" Nullable="false" />
+    <Property Type="String" Name="SupervisorRemarks" Nullable="false" />
+    <Property Type="String" Name="TechnicianRemarks" Nullable="false" MaxLength="100" />
+    <Property Type="Double" Name="AdditionalAmount" Nullable="false" />
+    <Property Type="Int32" Name="ServiceHours" Nullable="false" />
+    <Property Type="String" Name="ServiceBookingNo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spGetAllServicesWithSupervisorId_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="String" Name="RateChart" Nullable="true" />
+    <Property Type="String" Name="Rules" Nullable="true" />
+    <Property Type="Int32" Name="IsLive" Nullable="true" />
+    <Property Type="Int32" Name="SupervisorId" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spGetAllCallAssignWithTechnicianId_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="ServiceBookingId" Nullable="true" />
+    <Property Type="Int32" Name="CustomerId" Nullable="true" />
+    <Property Type="Int32" Name="TechnicianId" Nullable="false" />
+    <Property Type="DateTime" Name="StartTime" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EndTime" Nullable="false" Precision="23" />
+    <Property Type="String" Name="TechnicianRemarks" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="ServiceEndTime" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="AssignedTime" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="AssignedBy" Nullable="true" />
+    <Property Type="String" Name="StartLocation" Nullable="false" />
+    <Property Type="Double" Name="Amount" Nullable="false" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="ServicesStartTime" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="ServiceDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="String" Name="Mobile" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="AdminRemarks" Nullable="false" />
+    <Property Type="String" Name="UserRemarks" Nullable="false" />
+    <Property Type="String" Name="SupervisorRemarks" Nullable="false" />
+    <Property Type="Int32" Name="ServiceType" Nullable="true" />
+    <Property Type="String" Name="Latitude" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Longitude" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="ServiceTime" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ServiceBookingNo" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="InvoiceNo" Nullable="false" />
+    <Property Type="DateTime" Name="Invoicedate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="ServiceBookingStatus" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spInsertCallAssign_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetServiceRateChartmappingWithServiceId_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="ServiceId" Nullable="true" />
+    <Property Type="DateTime" Name="UptoHours" Nullable="true" Precision="23" />
+    <Property Type="Double" Name="Amount" Nullable="true" />
+    <Property Type="String" Name="ServiceHours" Nullable="true" MaxLength="4000" />
+    <Property Type="Double" Name="AdditionalRate" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllCallAssignForTechnicianId_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="ServiceBookingId" Nullable="true" />
+    <Property Type="Int32" Name="TechnicianId" Nullable="true" />
+    <Property Type="DateTime" Name="StartTime" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="EndTime" Nullable="true" Precision="23" />
+    <Property Type="String" Name="TechnicianRemarks" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="ServiceStartTime" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ServiceEndTime" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="AssignedTime" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="AssignedBy" Nullable="true" />
+    <Property Type="String" Name="StartLocation" Nullable="true" />
+    <Property Type="Double" Name="Amount" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="DateTime" Name="SysTime" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="spAdminUpdateServicebooking_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllCallAssignDetailsWithServiceBookingId_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="ServiceBookingId" Nullable="true" />
+    <Property Type="Int32" Name="CustomerId" Nullable="true" />
+    <Property Type="Int32" Name="TechnicianId" Nullable="true" />
+    <Property Type="DateTime" Name="StartTime" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EndTime" Nullable="false" Precision="23" />
+    <Property Type="String" Name="TechnicianRemarks" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="ServiceStartTime" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="ServiceEndTime" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="AssignedTime" Nullable="false" Precision="23" />
+    <Property Type="String" Name="StartLocation" Nullable="false" />
+    <Property Type="Double" Name="Amount" Nullable="false" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="DateTime" Name="SysTime" Nullable="true" Precision="23" />
+    <Property Type="String" Name="TechnicianName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ServiceStatus" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="ServiceHours" Nullable="true" />
+    <Property Type="String" Name="StartImageUrl" Nullable="true" />
+    <Property Type="String" Name="StopImageUrl" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllAnnouncements_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="Type" Nullable="true" />
+    <Property Type="String" Name="Heading" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="DateTime" Name="Date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ImageUrl" Nullable="false" />
+    <Property Type="String" Name="VideoUrl" Nullable="true" />
+    <Property Type="Int32" Name="VideoType" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="Int32" Name="LinkType" Nullable="false" />
+    <Property Type="String" Name="Link" Nullable="false" MaxLength="500" />
+    <Property Type="Int32" Name="OrderNo" Nullable="true" />
+    <Property Type="Int32" Name="AnnouncementGroupId" Nullable="true" />
+    <Property Type="Int32" Name="ThemeType" Nullable="false" />
+    <Property Type="String" Name="GroupName" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="GroupId" Nullable="false" />
+    <Property Type="Int32" Name="GroupOrderNo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllAnnouncementWithGroupId_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="Type" Nullable="true" />
+    <Property Type="String" Name="Heading" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="DateTime" Name="Date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ImageUrl" Nullable="true" />
+    <Property Type="String" Name="VideoUrl" Nullable="true" />
+    <Property Type="Int32" Name="ThemeType" Nullable="false" />
+    <Property Type="Int32" Name="VideoType" Nullable="true" />
+    <Property Type="Int32" Name="OrderNo" Nullable="true" />
+    <Property Type="Int32" Name="AnnouncementGroupId" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="DateTime" Name="Systime" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="LinkType" Nullable="false" />
+    <Property Type="String" Name="Link" Nullable="false" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="spInsertAnnouncementGroup_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spInsertAnnouncements_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spUpdateAnnouncementVideoUrl_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="UpdateServiceBookingStatus_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllBillDetailsWithBookingId_Result">
+    <Property Type="Int32" Name="ServiceId" Nullable="true" />
+    <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Mobile" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="Int32" Name="LocationId" Nullable="true" />
+    <Property Type="String" Name="Latitude" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Longitude" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="PaymentType" Nullable="true" />
+    <Property Type="Double" Name="Amount" Nullable="true" />
+    <Property Type="DateTime" Name="ServiceDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="serviceTime" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="ServiceType" Nullable="true" />
+    <Property Type="String" Name="Remarks" Nullable="true" />
+    <Property Type="String" Name="OfferCode" Nullable="false" MaxLength="10" />
+    <Property Type="Double" Name="Discount" Nullable="true" />
+    <Property Type="Int32" Name="SupervisorId" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="DateTime" Name="Systime" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="TechnicianId" Nullable="false" />
+    <Property Type="String" Name="AdminRemarks" Nullable="false" />
+    <Property Type="String" Name="SupervisorRemarks" Nullable="false" />
+    <Property Type="String" Name="TechnicianRemarks" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="ProposedAmount" Nullable="false" />
+    <Property Type="Int32" Name="ServiceStatus" Nullable="true" />
+    <Property Type="String" Name="ServiceBookingNo" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="InvoiceNo" Nullable="false" />
+    <Property Type="DateTime" Name="InvoiceDate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="ServiceHours" Nullable="true" />
+    <Property Type="Double" Name="AdditionalAmount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spInsertUsersSupervisor_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spUpdateServiceBookingAuthoriseStatus_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllCallReports_Result">
+    <Property Type="Int32" Name="ServiceBookingId" Nullable="false" />
+    <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="SysTime" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="BookingDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ServiceTime" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="PaymentType" Nullable="true" />
+    <Property Type="Int32" Name="SupervisorId" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="Int32" Name="TechnicianId" Nullable="false" />
+    <Property Type="Double" Name="TotalAmount" Nullable="true" />
+    <Property Type="Double" Name="Amount" Nullable="true" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="Int32" Name="LocationId" Nullable="true" />
+    <Property Type="Int32" Name="ServiceId" Nullable="true" />
+    <Property Type="String" Name="Longitude" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Latitude" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="ServiceType" Nullable="true" />
+    <Property Type="String" Name="Remarks" Nullable="false" />
+    <Property Type="Int32" Name="ServiceStatus" Nullable="false" />
+    <Property Type="String" Name="AdminRemarks" Nullable="false" />
+    <Property Type="String" Name="SupervisorRemarks" Nullable="false" />
+    <Property Type="DateTime" Name="ServiceStartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="ServiceEndDate" Nullable="false" Precision="23" />
+    <Property Type="Double" Name="AdditionalAmount" Nullable="false" />
+    <Property Type="Int32" Name="ServiceHours" Nullable="false" />
+    <Property Type="String" Name="SupervisorName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Location" Nullable="true" />
+    <Property Type="String" Name="TechnicianName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="UserAddress" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Mobile" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ServiceBookingNo" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spGetAllClosedReports_Result">
+    <Property Type="Int32" Name="ServiceBookingId" Nullable="false" />
+    <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="SysTime" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="BookingDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ServiceTime" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="PaymentType" Nullable="true" />
+    <Property Type="Int32" Name="SupervisorId" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="Int32" Name="TechnicianId" Nullable="false" />
+    <Property Type="Double" Name="TotalAmount" Nullable="true" />
+    <Property Type="Double" Name="Amount" Nullable="true" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="Int32" Name="LocationId" Nullable="true" />
+    <Property Type="Int32" Name="ServiceId" Nullable="true" />
+    <Property Type="String" Name="Longitude" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Latitude" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="ServiceType" Nullable="true" />
+    <Property Type="String" Name="Remarks" Nullable="false" />
+    <Property Type="Int32" Name="ServiceStatus" Nullable="false" />
+    <Property Type="String" Name="AdminRemarks" Nullable="false" />
+    <Property Type="String" Name="SupervisorRemarks" Nullable="false" />
+    <Property Type="DateTime" Name="ServiceStartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="ServiceEndDate" Nullable="false" Precision="23" />
+    <Property Type="Double" Name="AdditionalAmount" Nullable="false" />
+    <Property Type="Int32" Name="ServiceHours" Nullable="false" />
+    <Property Type="String" Name="SupervisorName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Location" Nullable="true" />
+    <Property Type="String" Name="TechnicianName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="UserAddress" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Mobile" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ServiceBookingNo" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spUpdateBillAmountWithServiceBookingId_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllServicesWithLocationId_Result">
+    <Property Type="Int32" Name="CityServiceMappingId" Nullable="false" />
+    <Property Type="Int32" Name="ServiceId" Nullable="true" />
+    <Property Type="Int32" Name="CityId" Nullable="true" />
+    <Property Type="Int32" Name="IsLive" Nullable="true" />
+    <Property Type="String" Name="Rules" Nullable="true" />
+    <Property Type="String" Name="RateChart" Nullable="true" />
+    <Property Type="Int32" Name="SupervisorId" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ImagePath" Nullable="true" />
+    <Property Type="String" Name="ServiceDescription" Nullable="true" />
+    <Property Type="String" Name="ServiceRules" Nullable="true" />
+    <Property Type="Int32" Name="CategoryId" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="Double" Name="AdvanceAmount" Nullable="true" />
+    <Property Type="Double" Name="AdditionalRate" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllSupervisorLocationServiceMappingWithSupervisorId_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="SupervisorId" Nullable="true" />
+    <Property Type="Int32" Name="LocationId" Nullable="true" />
+    <Property Type="Int32" Name="ServiceId" Nullable="true" />
+    <Property Type="Int32" Name="CityServiceMappingId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spRevokeServiceBookingStatus_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllLiveBookingDetails_Result">
+    <Property Type="Int32" Name="ServiceBookingId" Nullable="false" />
+    <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="SysTime" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ServiceDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ServiceTime" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="PaymentType" Nullable="true" />
+    <Property Type="Int32" Name="SupervisorId" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="Int32" Name="TechnicianId" Nullable="false" />
+    <Property Type="Double" Name="Amount" Nullable="true" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="Int32" Name="LocationId" Nullable="true" />
+    <Property Type="Int32" Name="ServiceId" Nullable="true" />
+    <Property Type="String" Name="Longitude" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Latitude" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="ServiceType" Nullable="true" />
+    <Property Type="String" Name="Remarks" Nullable="false" />
+    <Property Type="Int32" Name="ServiceStatus" Nullable="false" />
+    <Property Type="String" Name="AdminRemarks" Nullable="false" />
+    <Property Type="String" Name="SupervisorRemarks" Nullable="false" />
+    <Property Type="String" Name="TechnicianRemarks" Nullable="false" MaxLength="100" />
+    <Property Type="Double" Name="AdditionalAmount" Nullable="false" />
+    <Property Type="Int32" Name="ServiceHours" Nullable="false" />
+    <Property Type="String" Name="SupervisorName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ServiceBookingNo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Location" Nullable="true" />
+    <Property Type="String" Name="TechnicianName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="TechnicianMobile" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="UserAddress" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spGetAllPastBookingDetails_Result">
+    <Property Type="Int32" Name="ServiceBookingId" Nullable="false" />
+    <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="SysTime" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ServiceDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ServiceTime" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="PaymentType" Nullable="true" />
+    <Property Type="Int32" Name="SupervisorId" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="Int32" Name="TechnicianId" Nullable="false" />
+    <Property Type="Double" Name="Amount" Nullable="true" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="Int32" Name="LocationId" Nullable="true" />
+    <Property Type="Int32" Name="ServiceId" Nullable="true" />
+    <Property Type="String" Name="Longitude" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Latitude" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="ServiceType" Nullable="true" />
+    <Property Type="String" Name="Remarks" Nullable="false" />
+    <Property Type="Int32" Name="ServiceStatus" Nullable="false" />
+    <Property Type="String" Name="AdminRemarks" Nullable="false" />
+    <Property Type="String" Name="SupervisorRemarks" Nullable="false" />
+    <Property Type="String" Name="TechnicianRemarks" Nullable="false" MaxLength="100" />
+    <Property Type="Double" Name="AdditionalAmount" Nullable="false" />
+    <Property Type="Int32" Name="ServiceHours" Nullable="false" />
+    <Property Type="String" Name="SupervisorName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ServiceBookingNo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Location" Nullable="true" />
+    <Property Type="String" Name="TechnicianName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="TechnicianMobile" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="UserAddress" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spEndCallAssign_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetStartCallAssign_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllSupervisorsWithCityIdAndServiceId_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Mobile" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="spGetAllAnnouncementsWithType_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+    <Property Type="Int32" Name="Type" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="DateTime" Name="Systime" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="OrderNo" Nullable="true" />
+    <Property Type="Int32" Name="ThemeType" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="spUpdateServicebookingServiceStatusByAdmin_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllBookingDetailsWithSupervisorId_Result">
+    <Property Type="Int32" Name="ServiceBookingId" Nullable="false" />
+    <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="SysTime" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ServiceDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ServiceTime" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Mobile" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="PaymentType" Nullable="true" />
+    <Property Type="Int32" Name="SupervisorId" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="Int32" Name="TechnicianId" Nullable="false" />
+    <Property Type="Double" Name="Amount" Nullable="true" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="Int32" Name="LocationId" Nullable="true" />
+    <Property Type="Int32" Name="ServiceId" Nullable="true" />
+    <Property Type="String" Name="Longitude" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Latitude" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="ServiceType" Nullable="true" />
+    <Property Type="String" Name="Remarks" Nullable="false" />
+    <Property Type="Int32" Name="ServiceStatus" Nullable="false" />
+    <Property Type="String" Name="AdminRemarks" Nullable="false" />
+    <Property Type="String" Name="SupervisorRemarks" Nullable="false" />
+    <Property Type="String" Name="TechnicianRemarks" Nullable="false" />
+    <Property Type="String" Name="SupervisorName" Nullable="false" MaxLength="100" />
+    <Property Type="Double" Name="AdditionalAmount" Nullable="false" />
+    <Property Type="Int32" Name="ServiceHours" Nullable="false" />
+    <Property Type="String" Name="Location" Nullable="true" />
+    <Property Type="String" Name="ServiceBookingNo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="TechnicianName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="UserAddress" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Mobilee" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="spGetAllServicesWithPincode_Result">
+    <Property Type="Int32" Name="LocationId" Nullable="true" />
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ImagePath" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="String" Name="Rules" Nullable="true" />
+    <Property Type="Int32" Name="CategoryId" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="RateChart" Nullable="true" />
+    <Property Type="Double" Name="AdvanceAmount" Nullable="false" />
+    <Property Type="Int32" Name="SupervisorId" Nullable="false" />
+    <Property Type="String" Name="CategoryName" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spGetTopTwelveServicesWithPincode_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="LocationId" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ImagePath" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="String" Name="Rules" Nullable="true" />
+    <Property Type="Int32" Name="CategoryId" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="RateChart" Nullable="true" />
+    <Property Type="Double" Name="AdvanceAmount" Nullable="false" />
+    <Property Type="Int32" Name="SupervisorId" Nullable="false" />
+    <Property Type="String" Name="CategoryName" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spGetAllCategories_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="DateTime" Name="SysTime" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="String" Name="ImagePath" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllCategoriesforDisplay_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="DateTime" Name="SysTime" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="String" Name="ImagePath" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllServicesWithCityId_Result">
+    <Property Type="Int32" Name="Id" Nullable="true" />
+    <Property Type="Int32" Name="CityServiceMappingId" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="String" Name="RateChart" Nullable="true" />
+    <Property Type="String" Name="Rules" Nullable="true" />
+    <Property Type="Int32" Name="IsLive" Nullable="true" />
+    <Property Type="Int32" Name="SupervisorId" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ImagePath" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllLocationServiceMappingDetails_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="DateTime" Name="Systime" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ServiceName" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllServicesforDisplay_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ImagePath" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="String" Name="Rules" Nullable="true" />
+    <Property Type="Double" Name="AdditionalRate" Nullable="true" />
+    <Property Type="Int32" Name="CategoryId" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="RateChart" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="Double" Name="AdvanceAmount" Nullable="false" />
+    <Property Type="String" Name="CategoryName" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spGetMastersCount_Result">
+    <Property Type="Int32" Name="CategoryCount" Nullable="true" />
+    <Property Type="Int32" Name="ServiceCount" Nullable="true" />
+    <Property Type="Int32" Name="UsersCount" Nullable="true" />
+    <Property Type="Int32" Name="LocationCount" Nullable="true" />
+    <Property Type="Int32" Name="SupervisorCount" Nullable="true" />
+    <Property Type="Int32" Name="TechnicianCount" Nullable="true" />
+    <Property Type="Int32" Name="CityServiceMappingCount" Nullable="true" />
+    <Property Type="Int32" Name="TimeSlotCount" Nullable="true" />
+    <Property Type="Int32" Name="StatusCount" Nullable="true" />
+    <Property Type="Int32" Name="AnnouncementCount" Nullable="true" />
+  </ComplexType>
+</Schema>

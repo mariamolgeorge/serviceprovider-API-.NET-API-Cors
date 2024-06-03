@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GMMEPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="spAdminUpdateServicebooking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="AdminRemarks" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="supervisorremarks" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="servicedate" Type="datetime" Mode="In" />
+    <Parameter Name="servicetime" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spDeleteData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TableName" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDeleteServiceMapingWithCityId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CityId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDeleteTechnicians" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spEndCallAssign" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="callassignid" Type="int" Mode="In" />
+    <Parameter Name="remarks" Type="nvarchar" Mode="In" />
+    <Parameter Name="amount" Type="float" Mode="In" />
+    <Parameter Name="status" Type="int" Mode="In" />
+    <Parameter Name="stopimageurl" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="spGetAllAnnouncements" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetAllAnnouncementsWithType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="type" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllAnnouncementWithGroupId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="groupid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllBillDetailsWithBookingId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bookingid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllBookingDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetAllBookingDetailsWithSupervisorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="supervisorid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllCallAssignDetailsWithServiceBookingId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bookingid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllCallAssignForTechnicianId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="techncianid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllCallAssignWithTechnicianId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="technicianid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllCallReports" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromdate" Type="datetime" Mode="In" />
+    <Parameter Name="todate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spGetAllCategories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetAllCategoriesforDisplay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetAllCategoryWithPincode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pincode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spGetAllCities" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetAllCityWithCountryId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="countryid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllClosedReports" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromdate" Type="datetime" Mode="In" />
+    <Parameter Name="todate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spGetAllCountry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetAllLiveBookingDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllLocation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetAllLocationServiceMappingDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetAllPages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetAllPagesWithUserAdminId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllPastBookingDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetAllServicesforDisplay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetAllServicesForSupervisorWithLocationId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetAllServicesWithCityId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CityId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllServicesWithLocationId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="locationid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllServicesWithPincode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pincode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spGetAllServicesWithSupervisorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SupervisorId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllServicesWithUsersServiceProviderId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UsersServiceProviderId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllServiceTimeSlots" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetAllServiceTimeSlotsWithServiceId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="serviceid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllServiceWithServiceId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllSupervisorLocationServiceMappingWithSupervisorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="supervisorid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllSupervisorsWithCityId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CityId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllSupervisorsWithCityIdAndServiceId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LocationId" Type="int" Mode="In" />
+    <Parameter Name="ServiceId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllSupervisorWithLocationId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="locationid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetAllTechniciansListWithServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetAllTechnicianStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetAllUsersAdmin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetAllUsersServiceProviderDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetAllUsersSupervisor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetAreaWithLocationId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LocationId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetCityDetailsWithCityId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CityId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetMastersCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetServiceRateChartmappingWithServiceId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="serviceid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetStartCallAssign" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="callassignid" Type="int" Mode="In" />
+    <Parameter Name="startlocation" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="startimageurl" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="spGetTopTwelveServicesWithPincode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pincode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spInsertAnnouncementGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="name" Type="nvarchar" Mode="In" />
+    <Parameter Name="type" Type="int" Mode="In" />
+    <Parameter Name="status" Type="int" Mode="In" />
+    <Parameter Name="orderno" Type="int" Mode="In" />
+    <Parameter Name="themetype" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertAnnouncements" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="name" Type="nvarchar" Mode="In" />
+    <Parameter Name="type" Type="int" Mode="In" />
+    <Parameter Name="heading" Type="nvarchar" Mode="In" />
+    <Parameter Name="description" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="date" Type="datetime" Mode="In" />
+    <Parameter Name="imageurl" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="videourl" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="videotype" Type="int" Mode="In" />
+    <Parameter Name="status" Type="int" Mode="In" />
+    <Parameter Name="orderno" Type="int" Mode="In" />
+    <Parameter Name="groupid" Type="int" Mode="In" />
+    <Parameter Name="themetype" Type="int" Mode="In" />
+    <Parameter Name="linktype" Type="int" Mode="In" />
+    <Parameter Name="link" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spInsertCallAssign" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="customerid" Type="int" Mode="In" />
+    <Parameter Name="technicianid" Type="int" Mode="In" />
+    <Parameter Name="assignedtime" Type="datetime" Mode="In" />
+    <Parameter Name="assignedby" Type="int" Mode="In" />
+    <Parameter Name="servicebookingid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="ImagePath" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="Description" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="status" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertCityServiceMapingRowWise" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="CityId" Type="int" Mode="In" />
+    <Parameter Name="ServiceId" Type="int" Mode="In" />
+    <Parameter Name="IsLive" Type="int" Mode="In" />
+    <Parameter Name="Rules" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="RateChart" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Description" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SupervisorId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertCityServiceMapping" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertLocation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="name" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Code" Type="nvarchar" Mode="In" />
+    <Parameter Name="userId" Type="int" Mode="In" />
+    <Parameter Name="status" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertPages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="ComponentName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spInsertServiceBooking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="serviceid" Type="int" Mode="In" />
+    <Parameter Name="servicename" Type="nvarchar" Mode="In" />
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+    <Parameter Name="mobile" Type="nvarchar" Mode="In" />
+    <Parameter Name="address" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="locationid" Type="int" Mode="In" />
+    <Parameter Name="latitude" Type="nvarchar" Mode="In" />
+    <Parameter Name="longitude" Type="nvarchar" Mode="In" />
+    <Parameter Name="paymenttype" Type="int" Mode="In" />
+    <Parameter Name="amount" Type="float" Mode="In" />
+    <Parameter Name="servicedate" Type="datetime" Mode="In" />
+    <Parameter Name="servicetime" Type="datetime" Mode="In" />
+    <Parameter Name="servicetype" Type="int" Mode="In" />
+    <Parameter Name="remarks" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="offercode" Type="nvarchar" Mode="In" />
+    <Parameter Name="discount" Type="float" Mode="In" />
+    <Parameter Name="supervisorid" Type="int" Mode="In" />
+    <Parameter Name="paymentcode" Type="nvarchar" Mode="In" />
+    <Parameter Name="adminremarks" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="supervisorremarks" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="technicianremarks" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="spInsertServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Code" Type="nvarchar" Mode="In" />
+    <Parameter Name="ImagePath" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Description" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Rules" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CategoryId" Type="int" Mode="In" />
+    <Parameter Name="status" Type="int" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="advanceamount" Type="float" Mode="In" />
+    <Parameter Name="RateChart" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="additionalrate" Type="float" Mode="In" />
+  </Function>
+  <Function Name="spInsertServiceTimeSlots" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="starttime" Type="datetime" Mode="In" />
+    <Parameter Name="endtime" Type="datetime" Mode="In" />
+    <Parameter Name="locationid" Type="int" Mode="In" />
+    <Parameter Name="serviceid" Type="int" Mode="In" />
+    <Parameter Name="status" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertTechnicianStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Code" Type="nvarchar" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Mobile" Type="nvarchar" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Address" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="CityId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertUsersAdmin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Mobile" Type="nvarchar" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Address" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="CityId" Type="int" Mode="In" />
+    <Parameter Name="status" Type="int" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spInsertUsersServiceProvider" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Mobile" Type="nvarchar" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Address" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="CityId" Type="int" Mode="In" />
+    <Parameter Name="SupervisorId" Type="int" Mode="In" />
+    <Parameter Name="IsLive" Type="int" Mode="In" />
+    <Parameter Name="status" Type="int" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+    <Parameter Name="isbill" Type="int" Mode="In" />
+    <Parameter Name="isbooking" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertUsersSupervisor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Mobile" Type="nvarchar" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Address" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="CityId" Type="int" Mode="In" />
+    <Parameter Name="status" Type="int" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+    <Parameter Name="serviceid" Type="int" Mode="In" />
+    <Parameter Name="isbill" Type="int" Mode="In" />
+    <Parameter Name="isbooking" Type="int" Mode="In" />
+    <Parameter Name="isauthorise" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spLoginCheckWithOTP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="otp" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spResendVerificationOtp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spRevokeServiceBookingStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spUpdateAnnouncementVideoUrl" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spUpdateBillAmountWithServiceBookingId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="amount" Type="float" Mode="In" />
+    <Parameter Name="bookingid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spUpdateServiceBookingAuthoriseStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spUpdateServicebookingServiceStatusByAdmin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="servicebookingid" Type="int" Mode="In" />
+    <Parameter Name="status" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spUpdateUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="name" Type="nvarchar" Mode="In" />
+    <Parameter Name="mobile" Type="nvarchar" Mode="In" />
+    <Parameter Name="email" Type="nvarchar" Mode="In" />
+    <Parameter Name="address" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="pincode" Type="nvarchar" Mode="In" />
+    <Parameter Name="latitude" Type="nvarchar" Mode="In" />
+    <Parameter Name="longitude" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spUserLoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spUserLoginWithEmailOrMobile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mobile" Type="nvarchar" Mode="In" />
+    <Parameter Name="email" Type="nvarchar" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UpdateServiceBookingStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="GMMEPModelStoreContainer" />
+</Schema>
